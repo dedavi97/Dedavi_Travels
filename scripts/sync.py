@@ -80,6 +80,7 @@ DATA = ROOT / "data"
 PLACES_FILE = DATA / "places.json"
 STATUS_FILE = DATA / "sync_status.json"
 CACHE_FILE = DATA / "name_cache.json"
+COUNTRY_CACHE_FILE = DATA / "country_cache.json"
 OVERRIDES_FILE = DATA / "name_overrides.json"
 LOCATION_OVERRIDES_FILE = DATA / "location_overrides.json"
 REPORT_FILE = DATA / "name_report.md"
@@ -242,12 +243,44 @@ class Nominatim:
         })
         return self.english_name(res)
 
+    def country_code(self, lat, lon):
+        """ISO 3166-1 alpha-2 code (lower case) of the OSM country containing the point."""
+        res = self.get("reverse", {
+            "lat": lat, "lon": lon, "zoom": 3, "format": "jsonv2", "addressdetails": 1,
+        })
+        return ((res or {}).get("address") or {}).get("country_code")
+
+
+NOMINATIM = Nominatim()
+
+
+def resolve_countries(points):
+    """Return {key: OSM country code or None}, cached forever in country_cache.json.
+
+    Natural Earth borders are simplified (off by a few hundred metres), so pins right
+    on a border (Gorizia, Schengen...) can land in the wrong country; OSM is precise."""
+    cache = read_json(COUNTRY_CACHE_FILE, {})
+    out = {}
+    try:
+        for name, lat, lon in points:
+            key = place_key(name, lat, lon)
+            if key not in cache:
+                try:
+                    cache[key] = NOMINATIM.country_code(lat, lon)
+                except Exception as e:  # not cached: retried next sync
+                    print(f"  ! Nominatim country lookup failed for '{name}': {e}")
+                    continue
+            out[key] = cache[key]
+    finally:
+        write_if_changed(COUNTRY_CACHE_FILE, dump_json(dict(sorted(cache.items()))))
+    return out
+
 
 def resolve_names(points):
     """Return {key: (english_name, method)} for every point, updating the cache."""
     overrides = read_json(OVERRIDES_FILE, {})
     cache = read_json(CACHE_FILE, {})
-    nom = Nominatim()
+    nom = NOMINATIM
     out = {}
     try:
         for name, lat, lon in points:
@@ -323,11 +356,16 @@ class Locator:
         name = COUNTRY_NAMES.get(sp["ADM0_A3"]) or sp.get("NAME_EN") or sp["NAME"]
         return name, clean(sp["ISO_A2_EH"]) or clean(sp["ISO_A2"])
 
-    def locate(self, lat, lon, forced_unit=None):
+    def iso2(self, k):
+        p = self.c_props[k]
+        return (clean(p["ISO_A2_EH"]) or clean(p["ISO_A2"]) or "").lower()
+
+    def locate(self, lat, lon, forced_unit=None, osm_cc=None):
         """Return (location dict or None, note or None).
 
         forced_unit (an ADM0_A3 code from location_overrides.json) skips the
-        country lookup, for pins where Natural Earth's border is not precise enough."""
+        country lookup. osm_cc (OpenStreetMap country code) wins over Natural Earth
+        when they disagree and a matching unit is within COASTAL_MAX_KM."""
         if forced_unit:
             i = next((k for k, p in enumerate(self.c_props) if p["ADM0_A3"] == forced_unit), None)
             if i is None:
@@ -335,6 +373,13 @@ class Locator:
             km = 0.0
         else:
             i, km = self._find(self.c_tree, self.c_geoms, lat, lon)
+        osm_note = None
+        if not forced_unit and osm_cc and (i is None or self.iso2(i) != osm_cc):
+            j, jkm = self._find(self.c_tree, self.c_geoms, lat, lon, allowed=lambda k: self.iso2(k) == osm_cc)
+            if j is not None:
+                osm_note = (f"country set from OpenStreetMap ({osm_cc.upper()}); "
+                            f"Natural Earth said {self.c_props[i]['ADMIN'] if i is not None else 'none'}")
+                i, km = j, 0.0
         if i is None:
             far = f"{km:.0f} km" if km is not None else "far"
             return None, f"no country found (nearest border {far} away)"
@@ -353,6 +398,8 @@ class Locator:
         note = f"snapped to {p['ADMIN']} ({km:.1f} km away)" if km else None
         if forced_unit:
             note = f"country set by location_overrides.json ({forced_unit})"
+        elif osm_note:
+            note = osm_note
 
         a3 = p["ADM0_A3"]
         if a3 in SUBDIVISIONS:
@@ -372,6 +419,7 @@ class Locator:
 
 def build(points):
     names = resolve_names(points)
+    countries = resolve_countries(points)
     locator = Locator()
     location_overrides = read_json(LOCATION_OVERRIDES_FILE, {})
     places, report, notes, seen = [], [], [], set()
@@ -382,7 +430,8 @@ def build(points):
             pid = hashlib.sha1((pid + "+").encode()).hexdigest()[:10]
         seen.add(pid)
         en_name, method = names[key]
-        loc, note = locator.locate(lat, lon, location_overrides.get(key) or location_overrides.get(name))
+        loc, note = locator.locate(lat, lon, location_overrides.get(key) or location_overrides.get(name),
+                                   countries.get(key))
         if note:
             notes.append(f"- **{en_name}** ({lat:.5f}, {lon:.5f}): {note}")
             print(f"  ! {en_name}: {note}")

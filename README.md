@@ -14,7 +14,7 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 2. Twice a month (on the 1st and the 15th) GitHub runs a small program automatically. It:
    - downloads the "Visitati" layer of the map,
    - finds the English name of each new place (using OpenStreetMap; names are remembered, so each place is looked up only once),
-   - works out the country, territory and region of each place using world borders from Natural Earth (in the version that follows Italy's official view, e.g. Crimea is part of Ukraine),
+   - works out the country, territory and region of each place using world borders from Natural Earth, double-checked with OpenStreetMap for pins right on a border (in the version that follows Italy's official view, e.g. Crimea is part of Ukraine),
    - saves the result in `data/places.json`, which the website reads.
 3. If something goes wrong (for example the map can't be downloaded), **the website keeps showing the last good data**, and the About page shows that the last update failed.
 
@@ -38,7 +38,7 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 - **Add a place**: just add a pin to the "Visitati" layer in My Maps. It will appear on the site after the next automatic update (1st or 15th of the month).
 - **Update now**: Actions tab → **Sync** → **Run workflow**.
 - **Fix a wrong English name**: open `data/name_overrides.json` and add a line like `"Original name": "English name"` (the file `data/name_report.md` lists how every name was found).
-- **Fix a wrong country** (rare: only for pins right on a border): add the place to `data/location_overrides.json` with the 3-letter country code used by Natural Earth, e.g. `"Narva": "EST"`.
+- **Pins right on a border** (Gorizia, Schengen...) are checked automatically with OpenStreetMap, which has precise borders. If one is still wrong, add it to `data/location_overrides.json` with the 3-letter country code used by Natural Earth, e.g. `"Gorizia": "ITA"`.
 
 ## Try the site on your computer
 
@@ -56,7 +56,8 @@ This needs Python installed (https://www.python.org/downloads/).
 | `data/sync_status.json` | When the last sync ran and whether it worked |
 | `data/name_cache.json` | English names already found (never looked up again) |
 | `data/name_overrides.json` | Manual name fixes |
-| `data/location_overrides.json` | Manual country fixes for border pins |
+| `data/country_cache.json` | Country of each pin according to OpenStreetMap (never looked up again) |
+| `data/location_overrides.json` | Manual country fixes for border pins (rarely needed) |
 | `data/name_report.md` | How each name was found, plus location notes |
 | `data/geo/countries.geojson` | Simplified world borders used by the map |
 | `data/geo/subdivisions.geojson` | Faint internal borders (regions, states...) shown on the map |
