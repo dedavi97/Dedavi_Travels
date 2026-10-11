@@ -137,6 +137,13 @@ def clean(value):
 
 # ---------------------------------------------------------------- input
 
+def parse_map_id(value):
+    """Accept the bare map id, "mid=<id>", "<id>&usp=sharing" or a whole My Maps link."""
+    value = value.strip()
+    m = re.search(r"(?:^|[?&])mid=([^&#\s]+)", value)
+    return (m.group(1) if m else re.split(r"[&#?\s]", value)[0]).strip()
+
+
 def points_from_kml(mid):
     url = KML_URL.format(mid=urllib.parse.quote(mid))
     try:
@@ -430,7 +437,7 @@ def main():
             points = points_from_csv(args.from_csv)
         else:
             source = "my_maps"
-            mid = os.environ.get("MYMAPS_ID", "").strip()
+            mid = parse_map_id(os.environ.get("MYMAPS_ID", ""))
             if not mid:
                 raise SyncError("MYMAPS_ID is not set (GitHub secret missing).")
             points = points_from_kml(mid)
