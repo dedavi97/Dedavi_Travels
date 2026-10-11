@@ -192,7 +192,10 @@ Places: 177. Fallbacks (original name kept): 0.
 - **Menton** (43.77448, 7.49754): snapped to France (1.4 km away)
 - **Novigrad** (45.31601, 13.56304): snapped to Croatia (1.1 km away)
 - **Caorle** (45.60020, 12.88741): snapped to Italy (0.2 km away); subdivision snapped (0.2 km away)
+- **Gorizia** (45.94009, 13.62032): country set from OpenStreetMap (IT); Natural Earth said Slovenia; subdivision snapped (0.5 km away)
 - **Aci Trezza** (37.56156, 15.15749): snapped to Italy (0.0 km away); subdivision snapped (0.0 km away)
+- **Schengen** (49.47184, 6.36570): country set from OpenStreetMap (LU); Natural Earth said Germany
+- **Vianden** (49.93405, 6.20921): country set from OpenStreetMap (LU); Natural Earth said Germany
 - **Nida** (55.30327, 21.00679): snapped to Lithuania (0.1 km away)
-- **Narva** (59.37969, 28.17908): country set by location_overrides.json (EST)
+- **Narva** (59.37969, 28.17908): country set from OpenStreetMap (EE); Natural Earth said Russia
 - **Portofino** (44.30316, 9.20979): snapped to Italy (0.3 km away); subdivision snapped (0.3 km away)
