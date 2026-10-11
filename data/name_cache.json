@@ -1,0 +1,682 @@
+{
+  "Aci Trezza|37.56156|15.15749": {
+    "name": "Aci Trezza",
+    "method": "search"
+  },
+  "Agrigento|37.30884|13.58578": {
+    "name": "Agrigento",
+    "method": "search"
+  },
+  "Aix-en-Provence|43.53230|5.45097": {
+    "name": "Aix-en-Provence",
+    "method": "search"
+  },
+  "Aix-les-Bains|45.69234|5.90900": {
+    "name": "Aix-les-Bains",
+    "method": "search"
+  },
+  "Alassio|44.00378|8.16536": {
+    "name": "Alassio",
+    "method": "search"
+  },
+  "Amburgo|53.54883|9.98717": {
+    "name": "Hamburg",
+    "method": "search"
+  },
+  "Amsterdam|52.36757|4.90414": {
+    "name": "Amsterdam",
+    "method": "search"
+  },
+  "Annecy|45.90590|6.12591": {
+    "name": "Annecy",
+    "method": "search"
+  },
+  "Antibes|43.58042|7.12510": {
+    "name": "Antibes",
+    "method": "search"
+  },
+  "Anversa|51.21993|4.41499": {
+    "name": "Antwerp",
+    "method": "search"
+  },
+  "Aosta|45.73505|7.31309": {
+    "name": "Aosta",
+    "method": "search"
+  },
+  "Aquileia|45.76733|13.36956": {
+    "name": "Aquileia",
+    "method": "search"
+  },
+  "Arles|43.67665|4.62778": {
+    "name": "Arles",
+    "method": "search"
+  },
+  "Assisi|43.07063|12.61967": {
+    "name": "Assisi",
+    "method": "search"
+  },
+  "Asti|44.90076|8.20643": {
+    "name": "Asti",
+    "method": "search"
+  },
+  "Avignone|43.94870|4.80594": {
+    "name": "Avignon",
+    "method": "search"
+  },
+  "Barcellona|41.38740|2.16857": {
+    "name": "Barcelona",
+    "method": "search"
+  },
+  "Bath|51.37810|-2.35968": {
+    "name": "Bath",
+    "method": "search"
+  },
+  "Bayeux|49.27644|-0.70314": {
+    "name": "Bayeux",
+    "method": "search"
+  },
+  "Berlino|52.52001|13.40495": {
+    "name": "Berlin",
+    "method": "search"
+  },
+  "Bolsena|42.64409|11.98648": {
+    "name": "Bolsena",
+    "method": "search"
+  },
+  "Bristol|51.45451|-2.58791": {
+    "name": "Bristol",
+    "method": "search"
+  },
+  "Bruges|51.20845|3.22506": {
+    "name": "Bruges",
+    "method": "search"
+  },
+  "Bruxelles|50.84770|4.35720": {
+    "name": "Bruxelles - Brussel",
+    "method": "search"
+  },
+  "Budapest|47.49791|19.04023": {
+    "name": "Budapest",
+    "method": "search"
+  },
+  "Caen|49.18207|-0.37083": {
+    "name": "Caen",
+    "method": "search"
+  },
+  "Calais|50.95160|1.86126": {
+    "name": "Calais",
+    "method": "search"
+  },
+  "Camagna Monferrato|45.01695|8.42919": {
+    "name": "Camagna Monferrato",
+    "method": "search"
+  },
+  "Camerata Cornello|45.89874|9.65779": {
+    "name": "Camerata Cornello",
+    "method": "search"
+  },
+  "Camogli|44.34762|9.15696": {
+    "name": "Camogli",
+    "method": "search"
+  },
+  "Campagna|40.66667|15.10659": {
+    "name": "Campagna",
+    "method": "search"
+  },
+  "Cannes|43.55395|7.01702": {
+    "name": "Cannes",
+    "method": "search"
+  },
+  "Caorle|45.60020|12.88741": {
+    "name": "Caorle",
+    "method": "search"
+  },
+  "Castiglione del Lago|43.12646|12.04794": {
+    "name": "Castiglione del Lago",
+    "method": "search"
+  },
+  "Catania|37.50788|15.08300": {
+    "name": "Catania",
+    "method": "search"
+  },
+  "Cattaro|42.42466|18.77123": {
+    "name": "Kotor",
+    "method": "search"
+  },
+  "Cettigne|42.39425|18.91663": {
+    "name": "Cetinje",
+    "method": "search"
+  },
+  "Chambéry|45.56460|5.91778": {
+    "name": "Chambéry",
+    "method": "search"
+  },
+  "Chimay|50.04701|4.32218": {
+    "name": "Chimay",
+    "method": "search"
+  },
+  "Cittanova|45.31601|13.56304": {
+    "name": "Grad Novigrad",
+    "method": "search"
+  },
+  "Cogne|45.60832|7.35612": {
+    "name": "Cogne",
+    "method": "search"
+  },
+  "Collegno|45.07268|7.57382": {
+    "name": "Collegno",
+    "method": "search"
+  },
+  "Cracovia|50.06465|19.94498": {
+    "name": "Krakow",
+    "method": "search"
+  },
+  "Cremona|45.13331|10.02270": {
+    "name": "Cremona",
+    "method": "search"
+  },
+  "Dhermi|40.15097|19.64161": {
+    "name": "Dhërmi",
+    "method": "search"
+  },
+  "Differdange|49.52287|5.89257": {
+    "name": "Differdange",
+    "method": "search"
+  },
+  "Dinant|50.26271|4.91060": {
+    "name": "Dinant",
+    "method": "search"
+  },
+  "Eindhoven|51.42314|5.46229": {
+    "name": "Eindhoven",
+    "method": "search"
+  },
+  "Enna|37.56916|14.27489": {
+    "name": "Enna",
+    "method": "search"
+  },
+  "Esch-sur-Alzette|49.50240|5.97218": {
+    "name": "Esch-sur-Alzette",
+    "method": "search"
+  },
+  "Esch-sur-Sûre|49.90977|5.93548": {
+    "name": "Esch-sur-Sûre",
+    "method": "search"
+  },
+  "Firenze|43.76997|11.25767": {
+    "name": "Florence",
+    "method": "search"
+  },
+  "Fontane Bianche|36.96500|15.21490": {
+    "name": "Fontane Bianche",
+    "method": "search"
+  },
+  "Gand|51.04999|3.73039": {
+    "name": "Ghent",
+    "method": "search"
+  },
+  "Genova|44.40714|8.93474": {
+    "name": "Genoa",
+    "method": "search"
+  },
+  "Gibilterra|36.14075|-5.35358": {
+    "name": "Gibraltar",
+    "method": "search"
+  },
+  "Girona|41.97940|2.82143": {
+    "name": "Girona",
+    "method": "search"
+  },
+  "Gorizia|45.94009|13.62032": {
+    "name": "Gorizia",
+    "method": "search"
+  },
+  "Granada|37.18246|-3.60117": {
+    "name": "Granada",
+    "method": "search"
+  },
+  "Gubbio|43.35399|12.57341": {
+    "name": "Gubbio",
+    "method": "search"
+  },
+  "Harwell Oxford|51.58099|-1.31100": {
+    "name": "Oxford Nanopore",
+    "method": "search"
+  },
+  "Heidelberg|49.39875|8.67243": {
+    "name": "Heidelberg",
+    "method": "search"
+  },
+  "Helsinki|60.16986|24.93838": {
+    "name": "Helsinki",
+    "method": "search"
+  },
+  "Innsbruck|47.26753|11.39103": {
+    "name": "Innsbruck",
+    "method": "search"
+  },
+  "Iseo|45.65975|10.04957": {
+    "name": "Iseo",
+    "method": "search"
+  },
+  "Isola di Capo Rizzuto|38.95938|17.09405": {
+    "name": "Isola di Capo Rizzuto",
+    "method": "search"
+  },
+  "Jelgava|56.65115|23.71964": {
+    "name": "Jelgava",
+    "method": "search"
+  },
+  "Jūrmala|56.96845|23.77375": {
+    "name": "Jūrmala",
+    "method": "search"
+  },
+  "Kaunas|54.89852|23.90360": {
+    "name": "Kaunas",
+    "method": "search"
+  },
+  "Kinderdijk|51.88374|4.63309": {
+    "name": "Kinderdijk",
+    "method": "search"
+  },
+  "Klaipėda|55.70329|21.14428": {
+    "name": "Klaipėda",
+    "method": "search"
+  },
+  "Latronico|40.08805|16.01098": {
+    "name": "Latronico",
+    "method": "search"
+  },
+  "Le Mont-Saint-Michel|48.63606|-1.51146": {
+    "name": "Le Mont-Saint-Michel",
+    "method": "search"
+  },
+  "Leida|52.16362|4.48024": {
+    "name": "Leiden",
+    "method": "search"
+  },
+  "Liegi|50.64023|5.56894": {
+    "name": "Liège",
+    "method": "search"
+  },
+  "Lilla|50.62438|3.06786": {
+    "name": "Lille",
+    "method": "search"
+  },
+  "Lione|45.76404|4.83566": {
+    "name": "Lyon",
+    "method": "search"
+  },
+  "Lisbona|38.72225|-9.13934": {
+    "name": "Lisbon",
+    "method": "search"
+  },
+  "Lompoc|34.63915|-120.45794": {
+    "name": "Lompoc",
+    "method": "search"
+  },
+  "Londra|51.50722|-0.12759": {
+    "name": "Greater London",
+    "method": "search"
+  },
+  "Los Angeles|34.05491|-118.24264": {
+    "name": "Los Angeles",
+    "method": "search"
+  },
+  "Lubecca|53.86547|10.68656": {
+    "name": "Lübeck",
+    "method": "search"
+  },
+  "Lussemburgo|49.61233|6.12584": {
+    "name": "Luxembourg",
+    "method": "search"
+  },
+  "Maastricht|50.85137|5.69097": {
+    "name": "Maastricht",
+    "method": "search"
+  },
+  "Madrid|40.41673|-3.70329": {
+    "name": "Madrid",
+    "method": "search"
+  },
+  "Maratea|39.99852|15.71833": {
+    "name": "Maratea",
+    "method": "search"
+  },
+  "Marbella|36.51028|-4.88526": {
+    "name": "Marbella",
+    "method": "search"
+  },
+  "Maredret|50.30013|4.74888": {
+    "name": "Maredret",
+    "method": "search"
+  },
+  "Marzamemi|36.74205|15.11752": {
+    "name": "Marzamemi",
+    "method": "search"
+  },
+  "Mentone|43.77448|7.49754": {
+    "name": "Menton",
+    "method": "search"
+  },
+  "Metz|49.11786|6.17602": {
+    "name": "Metz",
+    "method": "search"
+  },
+  "Milano|45.46850|9.18240": {
+    "name": "Milan",
+    "method": "search"
+  },
+  "Monaco di Baviera|48.13513|11.58198": {
+    "name": "Munich",
+    "method": "search"
+  },
+  "Moncalieri|44.99835|7.68029": {
+    "name": "Moncalieri",
+    "method": "search"
+  },
+  "Mons|50.45382|3.96122": {
+    "name": "Mons",
+    "method": "search"
+  },
+  "Monte Carlo|43.74007|7.42664": {
+    "name": "Monte-Carlo",
+    "method": "search"
+  },
+  "Monterey|36.59729|-121.89777": {
+    "name": "Monterey",
+    "method": "search"
+  },
+  "Montpellier|43.61085|3.87613": {
+    "name": "Montpellier",
+    "method": "search"
+  },
+  "Montreux|46.43122|6.91068": {
+    "name": "Montreux",
+    "method": "search"
+  },
+  "Málaga|36.71782|-4.42556": {
+    "name": "Málaga",
+    "method": "search"
+  },
+  "Namur|50.46493|4.86497": {
+    "name": "Namur",
+    "method": "search"
+  },
+  "Narva|59.37969|28.17908": {
+    "name": "Narva",
+    "method": "search"
+  },
+  "Neive|44.72707|8.11541": {
+    "name": "Neive",
+    "method": "search"
+  },
+  "Nida|55.30327|21.00679": {
+    "name": "Nida",
+    "method": "search"
+  },
+  "Nizza|43.71017|7.26195": {
+    "name": "Nice",
+    "method": "search"
+  },
+  "Nova Gorica|45.95498|13.64930": {
+    "name": "Nova Gorica",
+    "method": "search"
+  },
+  "Novara|45.44576|8.62010": {
+    "name": "Novara",
+    "method": "search"
+  },
+  "Orikum|40.32778|19.47499": {
+    "name": "Orikum",
+    "method": "search"
+  },
+  "Paestum|40.42315|15.00716": {
+    "name": "Paestum",
+    "method": "search"
+  },
+  "Palmanova|45.90679|13.31007": {
+    "name": "Palmanova",
+    "method": "search"
+  },
+  "Parco nazionale Lahemaa|59.56766|25.78102": {
+    "name": "Kuusalu vald",
+    "method": "reverse"
+  },
+  "Parco nazionale di Sequoia|36.48637|-118.56575": {
+    "name": "Tulare County",
+    "method": "reverse"
+  },
+  "Parco nazionale di Yosemite|37.86510|-119.53833": {
+    "name": "Mariposa County",
+    "method": "reverse"
+  },
+  "Parigi|48.85755|2.35138": {
+    "name": "Paris",
+    "method": "search"
+  },
+  "Perugia|43.11072|12.39083": {
+    "name": "Perugia",
+    "method": "search"
+  },
+  "Pisa|43.72284|10.40176": {
+    "name": "Pisa",
+    "method": "search"
+  },
+  "Podgorica|42.43042|19.25936": {
+    "name": "Podgorica",
+    "method": "search"
+  },
+  "Pola|44.86662|13.84958": {
+    "name": "Grad Pula",
+    "method": "search"
+  },
+  "Pontedera|43.66374|10.64182": {
+    "name": "Pontedera",
+    "method": "search"
+  },
+  "Pordenone|45.96265|12.65515": {
+    "name": "Pordenone",
+    "method": "search"
+  },
+  "Portofino|44.30316|9.20979": {
+    "name": "Portofino",
+    "method": "search"
+  },
+  "Praga|50.07554|14.43780": {
+    "name": "Prague",
+    "method": "search"
+  },
+  "Recanati|43.40227|13.55389": {
+    "name": "Recanati",
+    "method": "search"
+  },
+  "Recco|44.36247|9.14440": {
+    "name": "Recco",
+    "method": "search"
+  },
+  "Rennes|48.11727|-1.67779": {
+    "name": "Rennes",
+    "method": "search"
+  },
+  "Riga|56.96769|24.10562": {
+    "name": "Riga",
+    "method": "search"
+  },
+  "Roma|41.89671|12.48220": {
+    "name": "Rome",
+    "method": "search"
+  },
+  "Rotterdam|51.92442|4.47773": {
+    "name": "Rotterdam",
+    "method": "search"
+  },
+  "Sacile|45.95646|12.50529": {
+    "name": "Sacile",
+    "method": "search"
+  },
+  "Saint-Malo|48.64922|-2.01842": {
+    "name": "Saint-Malo",
+    "method": "search"
+  },
+  "Saint-Vincent|45.75171|7.64150": {
+    "name": "Saint-Vincent",
+    "method": "search"
+  },
+  "Salerno|40.68133|14.77436": {
+    "name": "Salerno",
+    "method": "search"
+  },
+  "San Francisco|37.77493|-122.41942": {
+    "name": "San Francisco",
+    "method": "search"
+  },
+  "San Marino|43.93523|12.44676": {
+    "name": "San Marino",
+    "method": "search"
+  },
+  "San Mauro Torinese|45.10194|7.76525": {
+    "name": "San Mauro Torinese",
+    "method": "search"
+  },
+  "Sanremo|43.81597|7.77606": {
+    "name": "Sanremo",
+    "method": "search"
+  },
+  "Schengen|49.47184|6.36570": {
+    "name": "Schengen",
+    "method": "search"
+  },
+  "Scutari|42.06471|19.50902": {
+    "name": "Shkoder",
+    "method": "search"
+  },
+  "Siauliai|55.93491|23.31368": {
+    "name": "Šiauliai",
+    "method": "search"
+  },
+  "Siena|43.31847|11.33058": {
+    "name": "Siena",
+    "method": "search"
+  },
+  "Sigulda|57.13278|24.81628": {
+    "name": "Sigulda",
+    "method": "search"
+  },
+  "Sirmione|45.46504|10.60674": {
+    "name": "Sirmione",
+    "method": "search"
+  },
+  "Stoccolma|59.33270|18.06563": {
+    "name": "Stockholm",
+    "method": "search"
+  },
+  "Strasburgo|48.57341|7.75211": {
+    "name": "Strasbourg",
+    "method": "search"
+  },
+  "Stresa|45.88822|8.52580": {
+    "name": "Stresa",
+    "method": "search"
+  },
+  "Susa|45.13863|7.04842": {
+    "name": "Susa",
+    "method": "search"
+  },
+  "Tallinn|59.43696|24.75357": {
+    "name": "Tallinn",
+    "method": "search"
+  },
+  "Taormina|37.85455|15.28894": {
+    "name": "Taormina",
+    "method": "search"
+  },
+  "Tartu|58.37798|26.72904": {
+    "name": "Tartu",
+    "method": "search"
+  },
+  "Thionville|49.35733|6.16858": {
+    "name": "Thionville",
+    "method": "search"
+  },
+  "Tirana|41.32755|19.81870": {
+    "name": "Tirana",
+    "method": "search"
+  },
+  "Tirano|46.21619|10.16993": {
+    "name": "Tirano",
+    "method": "search"
+  },
+  "Tivoli|41.95971|12.80213": {
+    "name": "Tivoli",
+    "method": "search"
+  },
+  "Toledo|39.86283|-4.02732": {
+    "name": "Toledo",
+    "method": "search"
+  },
+  "Tolosa|43.60485|1.44285": {
+    "name": "Toulouse",
+    "method": "search"
+  },
+  "Torino|45.07031|7.68686": {
+    "name": "Turin",
+    "method": "search"
+  },
+  "Tours|47.38977|0.68917": {
+    "name": "Tours",
+    "method": "search"
+  },
+  "Trakai|54.63764|24.93408": {
+    "name": "Trakai",
+    "method": "search"
+  },
+  "Travemünde|53.96000|10.85358": {
+    "name": "Travemünde",
+    "method": "search"
+  },
+  "Treviri|49.75006|6.63719": {
+    "name": "Trier",
+    "method": "search"
+  },
+  "Trieste|45.65083|13.76745": {
+    "name": "Trieste",
+    "method": "search"
+  },
+  "Utrecht|52.09193|5.12296": {
+    "name": "Utrecht",
+    "method": "search"
+  },
+  "Valsavarenche|45.58749|7.20978": {
+    "name": "Valsavarenche",
+    "method": "search"
+  },
+  "Venaria Reale|45.13019|7.63120": {
+    "name": "Venaria Reale",
+    "method": "search"
+  },
+  "Venezia|45.44038|12.31595": {
+    "name": "Venice",
+    "method": "search"
+  },
+  "Verona|45.43837|10.99171": {
+    "name": "Verona",
+    "method": "search"
+  },
+  "Vianden|49.93405|6.20921": {
+    "name": "Vianden",
+    "method": "search"
+  },
+  "Vicoforte|44.36248|7.86180": {
+    "name": "Vicoforte",
+    "method": "search"
+  },
+  "Vienna|48.20807|16.37131": {
+    "name": "Vienna",
+    "method": "search"
+  },
+  "Vilnius|54.68716|25.27965": {
+    "name": "Vilnius",
+    "method": "search"
+  }
+}

@@ -1,0 +1,54 @@
+name: Sync
+
+on:
+  schedule:
+    - cron: "0 6 1,15 * *"   # 06:00 UTC on the 1st and 15th of every month
+  workflow_dispatch:          # manual "Run workflow" button
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Cache Natural Earth boundaries
+        uses: actions/cache@v5
+        with:
+          path: .cache/naturalearth
+          key: naturalearth-v5.1.2
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Sync places from Google My Maps
+        env:
+          MYMAPS_ID: ${{ secrets.MYMAPS_ID }}
+        run: python scripts/sync.py
+
+      # Runs even if the sync failed, so sync_status.json (last check + error message)
+      # is always saved. The regular commit also keeps the scheduled workflow alive.
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "data: sync $(date -u +%F)"
+            git push
+          fi

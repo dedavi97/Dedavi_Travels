@@ -1,0 +1,19 @@
+# Natural Earth full-resolution downloads (large, re-downloaded when needed)
+.cache/
+
+# Original My Maps export: kept only locally
+data/source/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.part
