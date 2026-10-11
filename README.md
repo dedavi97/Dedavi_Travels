@@ -14,7 +14,7 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 2. Twice a month (on the 1st and the 15th) GitHub runs a small program automatically. It:
    - downloads the "Visitati" layer of the map,
    - finds the English name of each new place (using OpenStreetMap; names are remembered, so each place is looked up only once),
-   - works out the country, territory and region of each place using world borders from Natural Earth,
+   - works out the country, territory and region of each place using world borders from Natural Earth (in the version that follows Italy's official view, e.g. Crimea is part of Ukraine),
    - saves the result in `data/places.json`, which the website reads.
 3. If something goes wrong (for example the map can't be downloaded), **the website keeps showing the last good data**, and the About page shows that the last update failed.
 
@@ -59,6 +59,7 @@ This needs Python installed (https://www.python.org/downloads/).
 | `data/location_overrides.json` | Manual country fixes for border pins |
 | `data/name_report.md` | How each name was found, plus location notes |
 | `data/geo/countries.geojson` | Simplified world borders used by the map |
+| `data/geo/subdivisions.geojson` | Faint internal borders (regions, states...) shown on the map |
 | `scripts/sync.py` | The sync program |
 | `scripts/build_geo.py` | Rebuilds `countries.geojson` (rarely needed) |
 | `.github/workflows/sync.yml` | The automatic twice-a-month schedule |

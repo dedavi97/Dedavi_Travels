@@ -15,7 +15,8 @@
   };
   var START_CENTER = [12, 46];        // Europe
   var ROTATE_DEG_PER_SEC = 2.5;       // gentle auto-rotation speed
-  var CLUSTER_MAX_ZOOM = 6;           // above this zoom every pin is shown on its own
+  var CLUSTER_MAX_ZOOM = 5;           // above this zoom every pin is shown on its own
+  var CLUSTER_RADIUS = 26;            // px: smaller = groups split sooner while zooming in
   var PLACE_ZOOM = 7;                 // zoom used when flying to a single place
   var PROJECTION_KEY = "dt.projection";
 
@@ -76,12 +77,13 @@
       },
       sources: {
         countries: { type: "geojson", data: "data/geo/countries.geojson" },
+        subdivisions: { type: "geojson", data: "data/geo/subdivisions.geojson" },
         graticule: { type: "geojson", data: graticule() },
         places: {
           type: "geojson",
           data: placesGeoJson(),
           cluster: true,
-          clusterRadius: 44,
+          clusterRadius: CLUSTER_RADIUS,
           clusterMaxZoom: CLUSTER_MAX_ZOOM,
         },
       },
@@ -93,6 +95,12 @@
           paint: { "fill-color": ["case", isVisited, COLORS.visited, COLORS.land] } },
         { id: "land-hover", type: "fill", source: "countries", filter: ["==", ["get", "id"], ""],
           paint: { "fill-color": "#ffffff", "fill-opacity": 0.07 } },
+        { id: "subdivisions", type: "line", source: "subdivisions",
+          paint: {
+            "line-color": "#ffffff",
+            "line-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.06, 4, 0.14, 7, 0.22],
+            "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.3, 6, 0.7],
+          } },
         { id: "borders", type: "line", source: "countries",
           paint: {
             "line-color": ["case", isVisited, COLORS.visitedBorder, COLORS.border],

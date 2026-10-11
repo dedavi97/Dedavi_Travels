@@ -10,7 +10,9 @@ from pathlib import Path
 
 NE_VERSION = "v5.1.2"
 NE_BASE_URL = f"https://raw.githubusercontent.com/nvkelso/natural-earth-vector/{NE_VERSION}/geojson/"
-ADMIN0 = "ne_10m_admin_0_countries"
+# Italian point of view: borders as officially recognised by Italy
+# (e.g. Crimea is part of Ukraine, Northern Cyprus part of Cyprus).
+ADMIN0 = "ne_10m_admin_0_countries_ita"
 ADMIN1 = "ne_10m_admin_1_states_provinces"
 
 ROOT = Path(__file__).resolve().parent.parent
