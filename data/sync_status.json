@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-10-11T17:14:25Z",
+  "last_check": "2026-10-11T17:31:04Z",
   "last_data_change": "2026-10-11T16:49:42Z",
-  "status": "ok",
-  "message": "No changes: 175 places.",
+  "status": "error",
+  "message": "Could not download the map from Google My Maps (HTTP Error 404: Not Found). Check that the map is shared as 'Anyone with the link' and that MYMAPS_ID is correct.",
   "place_count": 175,
   "source": "csv"
 }
