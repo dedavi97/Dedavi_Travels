@@ -6,8 +6,10 @@
 
   var COLORS = {
     ocean: "#0c1426",
-    land: "#252c3c",
-    visited: "#7d6230",
+    land: ["#242b3b", "#272e3f", "#222939", "#292f40"],      // by country "tone" (0-3)
+    visited: ["#7d6230", "#83672f", "#775d2d", "#86693a"],
+    lake: "#0f1a30",
+    river: "#20304f",
     border: "#3a4256",
     visitedBorder: "#a9843f",
     pin: "#f2b544",
@@ -17,7 +19,7 @@
   var ROTATE_DEG_PER_SEC = 2.5;       // gentle auto-rotation speed
   var CLUSTER_MAX_ZOOM = 5;           // above this zoom every pin is shown on its own
   var CLUSTER_RADIUS = 26;            // px: smaller = groups split sooner while zooming in
-  var PLACE_ZOOM = 7;                 // zoom used when flying to a single place
+  var PLACE_ZOOM = 6.5;               // zoom used when flying to a single place
   var PROJECTION_KEY = "dt.projection";
 
   var map = null;
@@ -64,6 +66,10 @@
 
   function projectionSpec(name) { return { type: name === "globe" ? "globe" : "mercator" }; }
 
+  function byTone(colors) {
+    return ["match", ["get", "tone"], 1, colors[1], 2, colors[2], 3, colors[3], colors[0]];
+  }
+
   function buildStyle() {
     var isVisited = ["in", ["get", "id"], ["literal", visitedUnits()]];
     return {
@@ -78,6 +84,7 @@
       sources: {
         countries: { type: "geojson", data: "data/geo/countries.geojson" },
         subdivisions: { type: "geojson", data: "data/geo/subdivisions.geojson" },
+        water: { type: "geojson", data: "data/geo/water.geojson" },
         graticule: { type: "geojson", data: graticule() },
         places: {
           type: "geojson",
@@ -92,7 +99,17 @@
         { id: "graticule", type: "line", source: "graticule",
           paint: { "line-color": "#ffffff", "line-opacity": 0.045, "line-width": 0.6 } },
         { id: "land", type: "fill", source: "countries",
-          paint: { "fill-color": ["case", isVisited, COLORS.visited, COLORS.land] } },
+          paint: { "fill-color": ["case", isVisited, byTone(COLORS.visited), byTone(COLORS.land)] } },
+        { id: "lakes", type: "fill", source: "water", filter: ["==", ["get", "kind"], "lake"],
+          paint: { "fill-color": COLORS.lake } },
+        { id: "rivers", type: "line", source: "water",
+          filter: ["all", ["==", ["get", "kind"], "river"], ["<=", ["get", "rank"], ["+", ["zoom"], 2]]],
+          layout: { "line-cap": "round", "line-join": "round" },
+          paint: {
+            "line-color": COLORS.river,
+            "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.4, 6, 1.2],
+            "line-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.5, 5, 0.9],
+          } },
         { id: "land-hover", type: "fill", source: "countries", filter: ["==", ["get", "id"], ""],
           paint: { "fill-color": "#ffffff", "fill-opacity": 0.07 } },
         { id: "subdivisions", type: "line", source: "subdivisions",
@@ -282,7 +299,7 @@
       center: START_CENTER,
       zoom: startZoom(el),
       minZoom: 0,
-      maxZoom: 12,
+      maxZoom: 9,  // the simplified borders look blocky beyond this
       maxPitch: 0,
       dragRotate: false,
       touchPitch: false,

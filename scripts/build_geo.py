@@ -6,6 +6,7 @@ Run once (or after a Natural Earth upgrade):  python scripts/build_geo.py
   file stays under 2 MB, while keeping microstates (Vatican, Monaco, San Marino...).
 - subdivisions.geojson: internal first-level boundaries (Italian regions, US states...)
   as lines, drawn faintly on the map.
+- water.geojson: main lakes (polygons) and rivers (lines), for a more natural look.
 """
 
 import json
@@ -37,6 +38,14 @@ SUB_GROUPING = {
 SUB_TOLERANCE = 0.03  # degrees
 SUB_DECIMALS = 3
 OUTLINE_BUFFER = 0.03  # drop lines this close to the country outline (coasts, borders)
+
+WATER_OUT = ROOT / "data" / "geo" / "water.geojson"
+LAKES = "ne_10m_lakes"
+RIVERS = "ne_10m_rivers_lake_centerlines"
+LAKE_MAX_RANK = 7      # Natural Earth scalerank: lower = more important
+LAKE_MIN_AREA = 0.004  # sq. degrees (Lake Garda ~0.04)
+RIVER_MAX_RANK = 6
+WATER_TOLERANCE = 0.01
 
 
 def round_coords(obj):
@@ -89,7 +98,32 @@ def build_subdivisions():
     print(f"Wrote {SUB_OUT} ({len(text) / 1e6:.2f} MB, {len(features)} countries)")
 
 
+def build_water():
+    features = []
+    for f in naturalearth.load(LAKES)["features"]:
+        p = f["properties"]
+        if (p.get("scalerank") or 99) > LAKE_MAX_RANK or not f["geometry"]:
+            continue
+        g = shape(f["geometry"]).buffer(0)
+        if g.area < LAKE_MIN_AREA:
+            continue
+        g = g.simplify(WATER_TOLERANCE, preserve_topology=True)
+        features.append({"type": "Feature", "properties": {"kind": "lake"},
+                         "geometry": json.loads(json.dumps(mapping(g)), parse_float=lambda v: round(float(v), SUB_DECIMALS))})
+    for f in naturalearth.load(RIVERS)["features"]:
+        p = f["properties"]
+        if (p.get("scalerank") or 99) > RIVER_MAX_RANK or not f["geometry"]:
+            continue
+        g = shape(f["geometry"]).simplify(WATER_TOLERANCE * 2)
+        features.append({"type": "Feature", "properties": {"kind": "river", "rank": int(p["scalerank"])},
+                         "geometry": json.loads(json.dumps(mapping(g)), parse_float=lambda v: round(float(v), SUB_DECIMALS))})
+    text = json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":"))
+    WATER_OUT.write_text(text, encoding="utf-8")
+    print(f"Wrote {WATER_OUT} ({len(text) / 1e6:.2f} MB, {len(features)} features)")
+
+
 def main():
+    build_water()
     build_subdivisions()
     features = []
     for f in naturalearth.load(naturalearth.ADMIN0)["features"]:
@@ -101,6 +135,7 @@ def main():
             "properties": {
                 "id": p["ADM0_A3"],
                 "name": COUNTRY_NAMES.get(p["ADM0_A3"]) or p.get("NAME_EN") or p["NAME"],
+                "tone": (p.get("MAPCOLOR7") or 1) % 4,  # neighbours get different tones
             },
             "geometry": {"type": "MultiPolygon", "coordinates": coords},
         })

@@ -60,6 +60,7 @@ This needs Python installed (https://www.python.org/downloads/).
 | `data/name_report.md` | How each name was found, plus location notes |
 | `data/geo/countries.geojson` | Simplified world borders used by the map |
 | `data/geo/subdivisions.geojson` | Faint internal borders (regions, states...) shown on the map |
+| `data/geo/water.geojson` | Main lakes and rivers shown on the map |
 | `scripts/sync.py` | The sync program |
 | `scripts/build_geo.py` | Rebuilds `countries.geojson` (rarely needed) |
 | `.github/workflows/sync.yml` | The automatic twice-a-month schedule |
