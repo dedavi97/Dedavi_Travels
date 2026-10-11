@@ -1905,11 +1905,11 @@
       "continent": "Europe"
     },
     {
-      "id": "7d018c72bc",
+      "id": "50da1f2607",
       "name": "Asti",
       "original_name": "Asti",
       "lat": 44.90076,
-      "lon": 8.20643,
+      "lon": 8.20644,
       "country": "Italy",
       "country_iso2": "IT",
       "territory": null,
@@ -2448,6 +2448,34 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
+      "continent": "Europe"
+    },
+    {
+      "id": "35c508487c",
+      "name": "Poirino",
+      "original_name": "Poirino",
+      "lat": 44.91946,
+      "lon": 7.84826,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Piedmont",
+      "continent": "Europe"
+    },
+    {
+      "id": "6e3dfe854a",
+      "name": "Cellarengo",
+      "original_name": "Cellarengo",
+      "lat": 44.86583,
+      "lon": 7.94518,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Piedmont",
       "continent": "Europe"
     }
   ]

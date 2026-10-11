@@ -59,6 +59,10 @@
     "name": "Asti",
     "method": "search"
   },
+  "Asti|44.90076|8.20644": {
+    "name": "Asti",
+    "method": "search"
+  },
   "Avignone|43.94870|4.80594": {
     "name": "Avignon",
     "method": "search"
@@ -141,6 +145,10 @@
   },
   "Cattaro|42.42466|18.77123": {
     "name": "Kotor",
+    "method": "search"
+  },
+  "Cellarengo|44.86583|7.94518": {
+    "name": "Cellarengo",
     "method": "search"
   },
   "Cettigne|42.39425|18.91663": {
@@ -465,6 +473,10 @@
   },
   "Podgorica|42.43042|19.25936": {
     "name": "Podgorica",
+    "method": "search"
+  },
+  "Poirino|44.91946|7.84826": {
+    "name": "Poirino",
     "method": "search"
   },
   "Pola|44.86662|13.84958": {
