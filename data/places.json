@@ -12,7 +12,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "c1761d8fbe",
@@ -26,7 +28,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Veneto",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5461",
+      "adm1_name": "Venice"
     },
     {
       "id": "85a03053d2",
@@ -40,7 +44,9 @@
       "territory_iso2": null,
       "unit": "MCO",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "MCO+00?",
+      "adm1_name": "Monaco"
     },
     {
       "id": "d07fac5318",
@@ -54,7 +60,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5266",
+      "adm1_name": "Alpes-Maritimes"
     },
     {
       "id": "0d5106dbc5",
@@ -68,7 +76,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5266",
+      "adm1_name": "Alpes-Maritimes"
     },
     {
       "id": "21528fee81",
@@ -82,7 +92,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5450",
+      "adm1_name": "Milan"
     },
     {
       "id": "a778661b92",
@@ -96,7 +108,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5333",
+      "adm1_name": "Paris"
     },
     {
       "id": "bbd2fc0afa",
@@ -110,7 +124,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5275",
+      "adm1_name": "Calvados"
     },
     {
       "id": "8c86e8a9a3",
@@ -124,7 +140,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5308",
+      "adm1_name": "Ille-et-Vilaine"
     },
     {
       "id": "1a6b816eb9",
@@ -138,7 +156,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5308",
+      "adm1_name": "Ille-et-Vilaine"
     },
     {
       "id": "aff1028dd8",
@@ -152,7 +172,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5322",
+      "adm1_name": "Manche"
     },
     {
       "id": "45144dd633",
@@ -166,7 +188,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5275",
+      "adm1_name": "Calvados"
     },
     {
       "id": "dd88cd47c9",
@@ -180,7 +204,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5310",
+      "adm1_name": "Indre-et-Loire"
     },
     {
       "id": "e89d0cded9",
@@ -194,7 +220,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Tuscany",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5386",
+      "adm1_name": "Florence"
     },
     {
       "id": "dce7b6de03",
@@ -208,7 +236,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Umbria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5432",
+      "adm1_name": "Perugia"
     },
     {
       "id": "9441274b1c",
@@ -222,7 +252,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Umbria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5432",
+      "adm1_name": "Perugia"
     },
     {
       "id": "1052f844a8",
@@ -236,7 +268,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Umbria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5432",
+      "adm1_name": "Perugia"
     },
     {
       "id": "7a79ff4833",
@@ -250,7 +284,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Umbria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5432",
+      "adm1_name": "Perugia"
     },
     {
       "id": "a41f67f92f",
@@ -264,7 +300,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lazio",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5422",
+      "adm1_name": "Rome"
     },
     {
       "id": "4213db25f4",
@@ -278,7 +316,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lazio",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5422",
+      "adm1_name": "Rome"
     },
     {
       "id": "fc284a3478",
@@ -292,7 +332,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lazio",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5423",
+      "adm1_name": "Viterbo"
     },
     {
       "id": "f6f3fd541f",
@@ -306,7 +348,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5368",
+      "adm1_name": "Savona"
     },
     {
       "id": "4830962114",
@@ -320,7 +364,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5369",
+      "adm1_name": "Imperia"
     },
     {
       "id": "b42fa8247b",
@@ -334,7 +380,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5302",
+      "adm1_name": "Haute-Savoie"
     },
     {
       "id": "2069dd6997",
@@ -348,7 +396,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5341",
+      "adm1_name": "Savoie"
     },
     {
       "id": "dfbab7d265",
@@ -362,7 +412,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5330",
+      "adm1_name": "Nord"
     },
     {
       "id": "eb48ba4a05",
@@ -376,7 +428,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3474",
+      "adm1_name": "Brussels Capital"
     },
     {
       "id": "bb6f621383",
@@ -390,7 +444,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3486",
+      "adm1_name": "North Holland"
     },
     {
       "id": "4e83b0eed3",
@@ -404,7 +460,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3485",
+      "adm1_name": "South Holland"
     },
     {
       "id": "c6e4dd2f56",
@@ -418,7 +476,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1573",
+      "adm1_name": "Baden-Württemberg"
     },
     {
       "id": "3cd6ae0113",
@@ -432,7 +492,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1591",
+      "adm1_name": "Bavaria"
     },
     {
       "id": "8b3f39e3b1",
@@ -446,7 +508,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Tuscany",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5381",
+      "adm1_name": "Pisa"
     },
     {
       "id": "f5060198ec",
@@ -460,7 +524,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5820",
+      "adm1_name": "Girona"
     },
     {
       "id": "628f9c553d",
@@ -474,7 +540,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5809",
+      "adm1_name": "Barcelona"
     },
     {
       "id": "00cfe1c500",
@@ -488,7 +556,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5834",
+      "adm1_name": "Málaga"
     },
     {
       "id": "a4de684851",
@@ -502,7 +572,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5834",
+      "adm1_name": "Málaga"
     },
     {
       "id": "f3ad985584",
@@ -516,7 +588,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5821",
+      "adm1_name": "Granada"
     },
     {
       "id": "34f62653cc",
@@ -530,7 +604,9 @@
       "territory_iso2": "GI",
       "unit": "GIB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "GIB+00?",
+      "adm1_name": "Gibraltar"
     },
     {
       "id": "82980123f8",
@@ -544,7 +620,9 @@
       "territory_iso2": null,
       "unit": "PRT",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "PRT-746",
+      "adm1_name": "Lisbon"
     },
     {
       "id": "7eab3e029c",
@@ -558,7 +636,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5833",
+      "adm1_name": "Community of Madrid"
     },
     {
       "id": "8f9fb9805e",
@@ -572,7 +652,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5848",
+      "adm1_name": "Toledo"
     },
     {
       "id": "9ac34d0024",
@@ -586,7 +668,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5266",
+      "adm1_name": "Alpes-Maritimes"
     },
     {
       "id": "d7123debf8",
@@ -600,7 +684,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5266",
+      "adm1_name": "Alpes-Maritimes"
     },
     {
       "id": "58563e7ef7",
@@ -614,7 +700,9 @@
       "territory_iso2": null,
       "unit": "AUT",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "AUT-2331",
+      "adm1_name": "Vienna"
     },
     {
       "id": "85e74ea93b",
@@ -628,7 +716,9 @@
       "territory_iso2": null,
       "unit": "HUN",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "HUN-3160",
+      "adm1_name": "Budapest"
     },
     {
       "id": "e7c3e1d46b",
@@ -642,7 +732,9 @@
       "territory_iso2": null,
       "unit": "POL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "POL-3170",
+      "adm1_name": "Lesser Poland Voivodeship"
     },
     {
       "id": "4494261806",
@@ -656,7 +748,9 @@
       "territory_iso2": null,
       "unit": "CZE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "CZE-1595",
+      "adm1_name": "Prague"
     },
     {
       "id": "2c4afa6851",
@@ -670,7 +764,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Veneto",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5464",
+      "adm1_name": "Verona"
     },
     {
       "id": "bf755010da",
@@ -684,7 +780,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5445",
+      "adm1_name": "Brescia"
     },
     {
       "id": "23569ff1a2",
@@ -698,7 +796,9 @@
       "territory_iso2": null,
       "unit": "HRV",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "HRV-1592",
+      "adm1_name": "Istria"
     },
     {
       "id": "549310a702",
@@ -712,7 +812,9 @@
       "territory_iso2": null,
       "unit": "HRV",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "HRV-1592",
+      "adm1_name": "Istria"
     },
     {
       "id": "903c91b56b",
@@ -726,7 +828,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1578",
+      "adm1_name": "Hamburg"
     },
     {
       "id": "b6f235727d",
@@ -740,7 +844,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3480",
+      "adm1_name": "Antwerp"
     },
     {
       "id": "e208cb8717",
@@ -754,7 +860,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1599",
+      "adm1_name": "Berlin"
     },
     {
       "id": "8112c4e28e",
@@ -768,7 +876,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3479",
+      "adm1_name": "West Flanders"
     },
     {
       "id": "5e1dd39969",
@@ -782,7 +892,9 @@
       "territory_iso2": null,
       "unit": "AUT",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "AUT-2329",
+      "adm1_name": "Tyrol"
     },
     {
       "id": "a8ad2fa04c",
@@ -796,7 +908,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1579",
+      "adm1_name": "Schleswig-Holstein"
     },
     {
       "id": "f37877d996",
@@ -810,7 +924,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5273",
+      "adm1_name": "Bas-Rhin"
     },
     {
       "id": "09b0756155",
@@ -824,7 +940,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1579",
+      "adm1_name": "Schleswig-Holstein"
     },
     {
       "id": "d04dfcff53",
@@ -838,7 +956,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Aosta Valley",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5442",
+      "adm1_name": "Aosta"
     },
     {
       "id": "2d8c0d261f",
@@ -852,7 +972,9 @@
       "territory_iso2": null,
       "unit": "GBR",
       "subdivision": "England",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "GBR-2080",
+      "adm1_name": "Westminster"
     },
     {
       "id": "39feb534c7",
@@ -866,7 +988,9 @@
       "territory_iso2": null,
       "unit": "GBR",
       "subdivision": "England",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "GBR-2044",
+      "adm1_name": "Bristol"
     },
     {
       "id": "a2664fabdc",
@@ -880,7 +1004,9 @@
       "territory_iso2": null,
       "unit": "GBR",
       "subdivision": "England",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "GBR-2043",
+      "adm1_name": "Bath and North East Somerset"
     },
     {
       "id": "bc8d9a256a",
@@ -894,7 +1020,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5334",
+      "adm1_name": "Pas-de-Calais"
     },
     {
       "id": "772cc14ffa",
@@ -908,7 +1036,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3485",
+      "adm1_name": "South Holland"
     },
     {
       "id": "28e9e4a83d",
@@ -922,7 +1052,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Aosta Valley",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5442",
+      "adm1_name": "Aosta"
     },
     {
       "id": "80a374065a",
@@ -936,7 +1068,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Aosta Valley",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5442",
+      "adm1_name": "Aosta"
     },
     {
       "id": "7534836a02",
@@ -950,7 +1084,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Veneto",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5461",
+      "adm1_name": "Venice"
     },
     {
       "id": "4cc9f5a8d5",
@@ -964,7 +1100,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Marche",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5429",
+      "adm1_name": "Macerata"
     },
     {
       "id": "86515fa38e",
@@ -978,7 +1116,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Tuscany",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5381",
+      "adm1_name": "Pisa"
     },
     {
       "id": "151d1aaba5",
@@ -992,7 +1132,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5441",
+      "adm1_name": "Cuneo"
     },
     {
       "id": "52b2a404c4",
@@ -1006,7 +1148,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5439",
+      "adm1_name": "Alessandria"
     },
     {
       "id": "d29e9241c8",
@@ -1020,7 +1164,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "5badd96cb7",
@@ -1034,7 +1180,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5444",
+      "adm1_name": "Sondrio"
     },
     {
       "id": "ece80a4b2a",
@@ -1048,7 +1196,9 @@
       "territory_iso2": null,
       "unit": "CHE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "CHE-170",
+      "adm1_name": "Grisons"
     },
     {
       "id": "26ec99c3d5",
@@ -1062,7 +1212,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Campania",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5400",
+      "adm1_name": "Salerno"
     },
     {
       "id": "76b5b43b1b",
@@ -1076,7 +1228,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Basilicata",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5390",
+      "adm1_name": "Potenza"
     },
     {
       "id": "073cc9532a",
@@ -1090,7 +1244,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Basilicata",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5390",
+      "adm1_name": "Potenza"
     },
     {
       "id": "290f470a7f",
@@ -1104,7 +1260,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Calabria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5392",
+      "adm1_name": "Crotone"
     },
     {
       "id": "26e1ede80b",
@@ -1118,7 +1276,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Campania",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5400",
+      "adm1_name": "Salerno"
     },
     {
       "id": "62cbfddcce",
@@ -1132,7 +1292,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Campania",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5400",
+      "adm1_name": "Salerno"
     },
     {
       "id": "8582e40edc",
@@ -1146,7 +1308,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5458",
+      "adm1_name": "Trieste"
     },
     {
       "id": "6101f7113e",
@@ -1160,7 +1324,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5457",
+      "adm1_name": "Gorizia"
     },
     {
       "id": "390761be4c",
@@ -1174,7 +1340,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5413",
+      "adm1_name": "Catania"
     },
     {
       "id": "2bfa2f7788",
@@ -1188,7 +1356,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5411",
+      "adm1_name": "Messina"
     },
     {
       "id": "a26d5d5428",
@@ -1202,7 +1372,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5413",
+      "adm1_name": "Catania"
     },
     {
       "id": "3ad1c52e2a",
@@ -1216,7 +1388,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5417",
+      "adm1_name": "Agrigento"
     },
     {
       "id": "e8aa0e220a",
@@ -1230,7 +1404,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5412",
+      "adm1_name": "Enna"
     },
     {
       "id": "647027a800",
@@ -1244,7 +1420,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5414",
+      "adm1_name": "Syracuse"
     },
     {
       "id": "34046146c8",
@@ -1258,7 +1436,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5414",
+      "adm1_name": "Syracuse"
     },
     {
       "id": "604ac273ca",
@@ -1272,7 +1452,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Aosta Valley",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5442",
+      "adm1_name": "Aosta"
     },
     {
       "id": "6f82ec6f1c",
@@ -1286,7 +1468,9 @@
       "territory_iso2": null,
       "unit": "ESP",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ESP-5803",
+      "adm1_name": "Alicante"
     },
     {
       "id": "34fb24b5b3",
@@ -1300,7 +1484,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3485",
+      "adm1_name": "South Holland"
     },
     {
       "id": "c05fefb92b",
@@ -1314,7 +1500,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5341",
+      "adm1_name": "Savoie"
     },
     {
       "id": "16812a95ad",
@@ -1328,7 +1516,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5338",
+      "adm1_name": "Rhône"
     },
     {
       "id": "c6c224498c",
@@ -1342,7 +1532,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5307",
+      "adm1_name": "Hérault"
     },
     {
       "id": "e09c685cf9",
@@ -1356,7 +1548,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5274",
+      "adm1_name": "Bouches-du-Rhône"
     },
     {
       "id": "0533003036",
@@ -1370,7 +1564,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5352",
+      "adm1_name": "Vaucluse"
     },
     {
       "id": "c903fb19db",
@@ -1384,7 +1580,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5298",
+      "adm1_name": "Haute-Garonne"
     },
     {
       "id": "a8092bb070",
@@ -1398,7 +1596,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5274",
+      "adm1_name": "Bouches-du-Rhône"
     },
     {
       "id": "e4373e3d01",
@@ -1412,7 +1612,9 @@
       "territory_iso2": null,
       "unit": "SWE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "SWE-194",
+      "adm1_name": "Stockholm"
     },
     {
       "id": "43b45ec89d",
@@ -1426,7 +1628,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "2868281a59",
@@ -1440,7 +1644,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "f4d60c20d0",
@@ -1454,7 +1660,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "763c74e600",
@@ -1468,7 +1676,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "20d88a614e",
@@ -1482,7 +1692,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "ea1d4623c2",
@@ -1496,7 +1708,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "c970f58b37",
@@ -1510,7 +1724,9 @@
       "territory_iso2": null,
       "unit": "USA",
       "subdivision": "California",
-      "continent": "North America"
+      "continent": "North America",
+      "adm1": "USA-3521",
+      "adm1_name": "California"
     },
     {
       "id": "967f809d9b",
@@ -1524,7 +1740,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-908",
+      "adm1_name": "Luxembourg"
     },
     {
       "id": "3be1478169",
@@ -1538,7 +1756,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-908",
+      "adm1_name": "Luxembourg"
     },
     {
       "id": "5edceae594",
@@ -1552,7 +1772,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5328",
+      "adm1_name": "Moselle"
     },
     {
       "id": "3ae092593d",
@@ -1566,7 +1788,9 @@
       "territory_iso2": null,
       "unit": "DEU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "DEU-1580",
+      "adm1_name": "Rhineland-Palatinate"
     },
     {
       "id": "b5b637c608",
@@ -1580,7 +1804,9 @@
       "territory_iso2": null,
       "unit": "ALB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ALB-1529",
+      "adm1_name": "Tirana"
     },
     {
       "id": "cc5f5fdb1c",
@@ -1594,7 +1820,9 @@
       "territory_iso2": null,
       "unit": "ALB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ALB-1523",
+      "adm1_name": "Berat"
     },
     {
       "id": "ed00e67f32",
@@ -1608,7 +1836,9 @@
       "territory_iso2": null,
       "unit": "ALB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ALB-1504",
+      "adm1_name": "Vlorë"
     },
     {
       "id": "d52915c438",
@@ -1622,7 +1852,9 @@
       "territory_iso2": null,
       "unit": "ALB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ALB-1504",
+      "adm1_name": "Vlorë"
     },
     {
       "id": "96a3fe3264",
@@ -1636,7 +1868,9 @@
       "territory_iso2": null,
       "unit": "ALB",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ALB-1498",
+      "adm1_name": "Shkodër"
     },
     {
       "id": "a28228e343",
@@ -1650,7 +1884,9 @@
       "territory_iso2": null,
       "unit": "MNE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "MNE-1517",
+      "adm1_name": "Podgorica"
     },
     {
       "id": "bf633661df",
@@ -1664,7 +1900,9 @@
       "territory_iso2": null,
       "unit": "MNE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "MNE-1500",
+      "adm1_name": "Cetinje"
     },
     {
       "id": "5aaff3747e",
@@ -1678,7 +1916,9 @@
       "territory_iso2": null,
       "unit": "MNE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "MNE-1500",
+      "adm1_name": "Cetinje"
     },
     {
       "id": "8cdc8e461e",
@@ -1692,7 +1932,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Tuscany",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5388",
+      "adm1_name": "Siena"
     },
     {
       "id": "b00ddf38ef",
@@ -1706,7 +1948,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5445",
+      "adm1_name": "Brescia"
     },
     {
       "id": "1d9eaa8d3d",
@@ -1720,7 +1964,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5437",
+      "adm1_name": "Verbano-Cusio-Ossola"
     },
     {
       "id": "ec2cb72f7d",
@@ -1734,7 +1980,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5443",
+      "adm1_name": "Bergamo"
     },
     {
       "id": "cd974bcec6",
@@ -1748,7 +1996,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5441",
+      "adm1_name": "Cuneo"
     },
     {
       "id": "616144e324",
@@ -1762,7 +2012,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3481",
+      "adm1_name": "Liège"
     },
     {
       "id": "caf1f79aee",
@@ -1776,7 +2028,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-898",
+      "adm1_name": "Limburg"
     },
     {
       "id": "38e136cd49",
@@ -1790,7 +2044,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3483",
+      "adm1_name": "North Brabant"
     },
     {
       "id": "2fa85d45ea",
@@ -1804,7 +2060,9 @@
       "territory_iso2": null,
       "unit": "NLD",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "NLD-3484",
+      "adm1_name": "Utrecht"
     },
     {
       "id": "7e1743bdd5",
@@ -1818,7 +2076,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3476",
+      "adm1_name": "Namur"
     },
     {
       "id": "9383a2b1b1",
@@ -1832,7 +2092,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-2",
+      "adm1_name": "Hainaut"
     },
     {
       "id": "aa04edfd00",
@@ -1846,7 +2108,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3478",
+      "adm1_name": "East Flanders"
     },
     {
       "id": "94e08dcb32",
@@ -1860,7 +2124,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3476",
+      "adm1_name": "Namur"
     },
     {
       "id": "6d1ab2ad2a",
@@ -1874,7 +2140,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-907",
+      "adm1_name": "Grevenmacher"
     },
     {
       "id": "7ced64e4cd",
@@ -1888,7 +2156,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-906",
+      "adm1_name": "Diekirch"
     },
     {
       "id": "800365af84",
@@ -1902,7 +2172,9 @@
       "territory_iso2": null,
       "unit": "CHE",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "CHE-3422",
+      "adm1_name": "Vaud"
     },
     {
       "id": "50da1f2607",
@@ -1916,7 +2188,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5440",
+      "adm1_name": "Asti"
     },
     {
       "id": "672f874a05",
@@ -1930,7 +2204,9 @@
       "territory_iso2": null,
       "unit": "GBR",
       "subdivision": "England",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "GBR-2751",
+      "adm1_name": "Oxfordshire"
     },
     {
       "id": "512b7c2fe6",
@@ -1944,7 +2220,9 @@
       "territory_iso2": null,
       "unit": "FRA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FRA-5328",
+      "adm1_name": "Moselle"
     },
     {
       "id": "d6f1a2c9eb",
@@ -1958,7 +2236,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-908",
+      "adm1_name": "Luxembourg"
     },
     {
       "id": "70f0f5d9e7",
@@ -1972,7 +2252,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-2",
+      "adm1_name": "Hainaut"
     },
     {
       "id": "163c8e1680",
@@ -1986,7 +2268,9 @@
       "territory_iso2": null,
       "unit": "BEL",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "BEL-3476",
+      "adm1_name": "Namur"
     },
     {
       "id": "1f23e4665b",
@@ -2000,7 +2284,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5438",
+      "adm1_name": "Novara"
     },
     {
       "id": "0d70d89c82",
@@ -2014,7 +2300,9 @@
       "territory_iso2": null,
       "unit": "SMR",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "SMR-4883",
+      "adm1_name": "Borgo Maggiore"
     },
     {
       "id": "ad11445bb4",
@@ -2028,7 +2316,9 @@
       "territory_iso2": null,
       "unit": "LUX",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LUX-906",
+      "adm1_name": "Diekirch"
     },
     {
       "id": "1252e29ba3",
@@ -2042,7 +2332,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5456",
+      "adm1_name": "Pordenone"
     },
     {
       "id": "f7c4583870",
@@ -2056,7 +2348,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5456",
+      "adm1_name": "Pordenone"
     },
     {
       "id": "bc2331c02c",
@@ -2070,7 +2364,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5455",
+      "adm1_name": "Udine"
     },
     {
       "id": "d137a4ae3b",
@@ -2084,7 +2380,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Friuli-Venezia Giulia",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5455",
+      "adm1_name": "Udine"
     },
     {
       "id": "88eb3084e9",
@@ -2098,7 +2396,9 @@
       "territory_iso2": null,
       "unit": "SVN",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "SVN-260",
+      "adm1_name": "Nova Gorica"
     },
     {
       "id": "e91410301b",
@@ -2112,7 +2412,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "e1543a38b6",
@@ -2126,7 +2428,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "1466ec1fb8",
@@ -2140,7 +2444,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "db1e8228f5",
@@ -2154,7 +2460,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "03a5062708",
@@ -2168,7 +2476,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-1075",
+      "adm1_name": "Vilnius"
     },
     {
       "id": "9bf7fcf3dc",
@@ -2182,7 +2492,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-1069",
+      "adm1_name": "Kaunas"
     },
     {
       "id": "2134814caf",
@@ -2196,7 +2508,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-935",
+      "adm1_name": "Klaipėda"
     },
     {
       "id": "c27325eb8e",
@@ -2210,7 +2524,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-935",
+      "adm1_name": "Klaipėda"
     },
     {
       "id": "d3b88e9f57",
@@ -2224,7 +2540,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-1075",
+      "adm1_name": "Vilnius"
     },
     {
       "id": "8fa10e7b87",
@@ -2238,7 +2556,9 @@
       "territory_iso2": null,
       "unit": "LVA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LVA-1094",
+      "adm1_name": "Riga"
     },
     {
       "id": "c3ffa0680c",
@@ -2252,7 +2572,9 @@
       "territory_iso2": null,
       "unit": "LVA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LVA-5764",
+      "adm1_name": "Jūrmala"
     },
     {
       "id": "7804eed877",
@@ -2266,7 +2588,9 @@
       "territory_iso2": null,
       "unit": "LVA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LVA-5778",
+      "adm1_name": "Sigulda"
     },
     {
       "id": "01ef2641d9",
@@ -2280,7 +2604,9 @@
       "territory_iso2": null,
       "unit": "LVA",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LVA-4849",
+      "adm1_name": "Jelgava"
     },
     {
       "id": "18c4966fb6",
@@ -2294,7 +2620,9 @@
       "territory_iso2": null,
       "unit": "LTU",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "LTU-1072",
+      "adm1_name": "Šiauliai"
     },
     {
       "id": "f2a547e6ef",
@@ -2308,7 +2636,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Sicily",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5414",
+      "adm1_name": "Syracuse"
     },
     {
       "id": "85ddfaf3d3",
@@ -2322,7 +2652,9 @@
       "territory_iso2": null,
       "unit": "EST",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "EST-1659",
+      "adm1_name": "Tartu"
     },
     {
       "id": "287316ef4c",
@@ -2336,7 +2668,9 @@
       "territory_iso2": null,
       "unit": "EST",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "EST-1655",
+      "adm1_name": "Ida-Viru"
     },
     {
       "id": "49d0450a64",
@@ -2350,7 +2684,9 @@
       "territory_iso2": null,
       "unit": "EST",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "EST-1654",
+      "adm1_name": "Harju"
     },
     {
       "id": "c03151434c",
@@ -2364,7 +2700,9 @@
       "territory_iso2": null,
       "unit": "FIN",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "FIN-3193",
+      "adm1_name": "Uusimaa"
     },
     {
       "id": "a3500f6a4c",
@@ -2378,7 +2716,9 @@
       "territory_iso2": null,
       "unit": "EST",
       "subdivision": null,
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "EST-1654",
+      "adm1_name": "Harju"
     },
     {
       "id": "60e6396fbd",
@@ -2392,7 +2732,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5367",
+      "adm1_name": "Genoa"
     },
     {
       "id": "a2ad258614",
@@ -2406,7 +2748,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Lombardy",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5447",
+      "adm1_name": "Cremona"
     },
     {
       "id": "cde4ddfb31",
@@ -2420,7 +2764,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5367",
+      "adm1_name": "Genoa"
     },
     {
       "id": "5be77f983c",
@@ -2434,7 +2780,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5367",
+      "adm1_name": "Genoa"
     },
     {
       "id": "357c2b24d0",
@@ -2448,7 +2796,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Liguria",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5367",
+      "adm1_name": "Genoa"
     },
     {
       "id": "35c508487c",
@@ -2462,7 +2812,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5434",
+      "adm1_name": "Turin"
     },
     {
       "id": "6e3dfe854a",
@@ -2476,7 +2828,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5440",
+      "adm1_name": "Asti"
     },
     {
       "id": "9586e3b8ab",
@@ -2490,7 +2844,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Aosta Valley",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5442",
+      "adm1_name": "Aosta"
     },
     {
       "id": "86bc21ddc2",
@@ -2504,7 +2860,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5441",
+      "adm1_name": "Cuneo"
     },
     {
       "id": "02e3e54bed",
@@ -2518,7 +2876,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5441",
+      "adm1_name": "Cuneo"
     },
     {
       "id": "1dd33dd2e5",
@@ -2532,7 +2892,9 @@
       "territory_iso2": null,
       "unit": "ITA",
       "subdivision": "Piedmont",
-      "continent": "Europe"
+      "continent": "Europe",
+      "adm1": "ITA-5441",
+      "adm1_name": "Cuneo"
     }
   ]
 }
