@@ -54,16 +54,17 @@ SUBDIVISIONS = {
     "GBR": "geonunit",  # England / Scotland / Wales / Northern Ireland
 }
 
-# Explore mode areas: Natural Earth admin-1 as is, for every country. To merge units of a
-# country later (e.g. London boroughs), add ADM0_A3: admin-1 property to group them by.
-ADM1_GROUPING = {}
+# Explore mode areas: Natural Earth admin-1 as is, for every country, except the units
+# merged here into one area. Format: ADM0_A3 -> admin-1 property -> value -> area name.
+ADM1_GROUPING = {
+    "GBR": {"region": {"Greater London": "London"}},  # 33 boroughs, too small to fill one by one
+}
 
 # Wrong name_en values in Natural Earth (by adm1_code).
 ADM1_NAME_FIXES = {
     "ITA-5367": "Genoa",           # NE: "Liguria"
     "ITA-5459": "South Tyrol",     # NE: "Trentino-South Tyrol"
     "ITA-5460": "Trento",          # NE: "Trentino"
-    "GBR-4809": "City of London",  # NE: "London"
 }
 
 UNNAMED_AREA = "Unnamed area"  # a few Natural Earth fragments have no name at all
@@ -371,15 +372,18 @@ class Locator:
             by_unit.setdefault(self._area_unit(f["properties"], geom), []).append((f["properties"], geom))
         areas = []
         for unit, items in by_unit.items():
-            group_by = ADM1_GROUPING.get(unit)
-            if group_by:
-                groups = {}
-                for props, geom in items:
-                    groups.setdefault(props[group_by] or props["name"] or UNNAMED_AREA, []).append(geom)
-                for value, geoms in groups.items():
-                    digest = hashlib.sha1(value.encode("utf-8")).hexdigest()[:6]
-                    areas.append({"id": f"{unit}-{digest}", "name": value, "unit": unit, "geom": unary_union(geoms)})
-                continue
+            rules = ADM1_GROUPING.get(unit, {})
+            merged = {}
+            for props, geom in items:
+                name = next((names[props[prop]] for prop, names in rules.items() if props.get(prop) in names), None)
+                if name:
+                    merged.setdefault(name, []).append(geom)
+            for name, geoms in merged.items():
+                digest = hashlib.sha1(name.encode("utf-8")).hexdigest()[:6]
+                areas.append({"id": f"{unit}-{digest}", "name": name, "unit": unit, "geom": unary_union(geoms)})
+            if merged:
+                items = [(props, geom) for props, geom in items
+                         if not any(props.get(prop) in names for prop, names in rules.items())]
             counts = {}
             for props, _ in items:
                 counts[props.get("name_en")] = counts.get(props.get("name_en"), 0) + 1
