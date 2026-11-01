@@ -103,6 +103,10 @@
     "name": "Budapest",
     "method": "search"
   },
+  "Cadzand-Bad|51.37717|3.38256": {
+    "name": "Cadzand-Bad",
+    "method": "search"
+  },
   "Caen|49.18207|-0.37083": {
     "name": "Caen",
     "method": "search"
@@ -589,6 +593,10 @@
   },
   "Sigulda|57.13278|24.81628": {
     "name": "Sigulda",
+    "method": "search"
+  },
+  "Siracusa|37.07540|15.28674": {
+    "name": "Siracusa",
     "method": "search"
   },
   "Sirmione|45.46504|10.60674": {

@@ -973,8 +973,8 @@
       "unit": "GBR",
       "subdivision": "England",
       "continent": "Europe",
-      "adm1": "GBR-2080",
-      "adm1_name": "Westminster"
+      "adm1": "GBR-4c57f0",
+      "adm1_name": "London"
     },
     {
       "id": "39feb534c7",
@@ -2625,22 +2625,6 @@
       "adm1_name": "Šiauliai"
     },
     {
-      "id": "f2a547e6ef",
-      "name": "Syracuse",
-      "original_name": "Libero consorzio comunale di Siracusa",
-      "lat": 37.06302,
-      "lon": 14.98562,
-      "country": "Italy",
-      "country_iso2": "IT",
-      "territory": null,
-      "territory_iso2": null,
-      "unit": "ITA",
-      "subdivision": "Sicily",
-      "continent": "Europe",
-      "adm1": "ITA-5414",
-      "adm1_name": "Syracuse"
-    },
-    {
       "id": "85ddfaf3d3",
       "name": "Tartu",
       "original_name": "Tartu",
@@ -2895,6 +2879,38 @@
       "continent": "Europe",
       "adm1": "ITA-5441",
       "adm1_name": "Cuneo"
+    },
+    {
+      "id": "e31f4b4592",
+      "name": "Cadzand-Bad",
+      "original_name": "Cadzand-Bad",
+      "lat": 51.37717,
+      "lon": 3.38256,
+      "country": "Netherlands",
+      "country_iso2": "NL",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "NLD",
+      "subdivision": null,
+      "continent": "Europe",
+      "adm1": "NLD-903",
+      "adm1_name": "Zeeland"
+    },
+    {
+      "id": "230c35c218",
+      "name": "Syracuse",
+      "original_name": "Siracusa",
+      "lat": 37.0754,
+      "lon": 15.28674,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Sicily",
+      "continent": "Europe",
+      "adm1": "ITA-5414",
+      "adm1_name": "Syracuse"
     }
   ]
 }
