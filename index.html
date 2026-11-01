@@ -52,7 +52,12 @@
       <section class="view view-globe" id="view-globe" hidden>
         <div class="map" id="map"></div>
         <button class="map-toggle" type="button" id="projection-toggle"></button>
-        <div class="map-tooltip" id="map-tooltip" hidden></div>
+        <button class="explore-back" type="button" id="explore-back" hidden><span aria-hidden="true">←</span> World</button>
+        <div class="map-tooltip" id="map-tooltip" hidden>
+          <span id="map-tooltip-name"></span>
+          <button class="map-tooltip-btn" type="button" id="map-tooltip-explore" hidden>Explore</button>
+        </div>
+        <div class="map-notice" id="map-notice" role="status" hidden></div>
       </section>
       <section class="view view-scroll" id="view-stats" hidden></section>
       <section class="view view-scroll" id="view-about" hidden></section>

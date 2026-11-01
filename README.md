@@ -3,6 +3,7 @@
 Interactive globe of every place I've visited: pins auto-synced from Google My Maps, political map with highlighted countries, stats by country and region.
 
 - **Globe**: a dark globe (or flat map) with a pin for every place. Countries and territories I have visited are coloured.
+- **Explore**: click or tap a visited country, then press **Explore**: the map zooms in and shows its provinces, states or counties, with the ones I have been to highlighted. **← World** (or Esc) goes back.
 - **Stats**: places, countries, territories, continents, share of the 195 UN states, Italian regions, US states, top countries, extreme points and the full list of places.
 - **About**: what the site is, when the data was last checked, credits.
 
@@ -62,6 +63,7 @@ This needs Python installed (https://www.python.org/downloads/).
 | `data/geo/countries.geojson` | Simplified world borders used by the map |
 | `data/geo/subdivisions.geojson` | Faint internal borders (regions, states...) shown on the map |
 | `data/geo/water.geojson` | Main lakes and rivers shown on the map |
+| `data/geo/adm1/` | One file per visited country with its areas for Explore (created and removed automatically) |
 | `scripts/sync.py` | The sync program |
 | `scripts/build_geo.py` | Rebuilds `countries.geojson` (rarely needed) |
 | `.github/workflows/sync.yml` | The automatic twice-a-month schedule |

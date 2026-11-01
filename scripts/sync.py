@@ -28,8 +28,9 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from shapely.geometry import Point, shape
-from shapely.ops import nearest_points
+import shapely
+from shapely.geometry import Point, mapping, shape
+from shapely.ops import nearest_points, unary_union
 from shapely.strtree import STRtree
 
 import naturalearth
@@ -52,6 +53,26 @@ SUBDIVISIONS = {
     "USA": "name",      # states
     "GBR": "geonunit",  # England / Scotland / Wales / Northern Ireland
 }
+
+# Explore mode areas: Natural Earth admin-1 as is, for every country. To merge units of a
+# country later (e.g. London boroughs), add ADM0_A3: admin-1 property to group them by.
+ADM1_GROUPING = {}
+
+# Wrong name_en values in Natural Earth (by adm1_code).
+ADM1_NAME_FIXES = {
+    "ITA-5367": "Genoa",           # NE: "Liguria"
+    "ITA-5459": "South Tyrol",     # NE: "Trentino-South Tyrol"
+    "ITA-5460": "Trento",          # NE: "Trentino"
+    "GBR-4809": "City of London",  # NE: "London"
+}
+
+UNNAMED_AREA = "Unnamed area"  # a few Natural Earth fragments have no name at all
+
+ADM1_TOLERANCE = 0.02       # degrees: largest simplification of the area files
+ADM1_MIN_ISLAND = 0.002      # sq. degrees: drop islands smaller than this...
+ADM1_MIN_ISLAND_FRAC = 0.01  # ...and than this fraction of their area's main part
+ADM1_DECIMALS = 4
+FIT_MIN_PART = 0.002         # sq. degrees: smaller country parts are ignored by the camera fit
 
 ITALY_REGIONS_EN = {
     "Valle d'Aosta": "Aosta Valley",
@@ -84,6 +105,7 @@ COUNTRY_CACHE_FILE = DATA / "country_cache.json"
 OVERRIDES_FILE = DATA / "name_overrides.json"
 LOCATION_OVERRIDES_FILE = DATA / "location_overrides.json"
 REPORT_FILE = DATA / "name_report.md"
+ADM1_DIR = DATA / "geo" / "adm1"
 
 
 class SyncError(Exception):
@@ -328,6 +350,59 @@ class Locator:
         self.s_geoms = [shape(f["geometry"]) for f in admin1]
         self.s_tree = STRtree(self.s_geoms)
 
+        self.areas = self._build_areas(naturalearth.load(naturalearth.ADMIN1)["features"])
+        self.a_geoms = [a["geom"] for a in self.areas]
+        self.a_tree = STRtree(self.a_geoms)
+
+    def _area_unit(self, props, geom):
+        """The admin-0 unit an admin-1 area belongs to on our map.
+
+        The admin-1 file has its own point of view (e.g. Crimea under Russia), so use
+        the unit its interior falls in; keep NE's value if that finds nothing."""
+        hits = self.c_tree.query(geom.representative_point(), predicate="intersects")
+        units = [self.c_props[i]["ADM0_A3"] for i in hits]
+        return props["adm0_a3"] if not units or props["adm0_a3"] in units else units[0]
+
+    def _build_areas(self, features):
+        """Return the Explore areas of all countries: dicts with id, name, unit, geom."""
+        by_unit = {}
+        for f in features:
+            geom = shape(f["geometry"]).buffer(0)
+            by_unit.setdefault(self._area_unit(f["properties"], geom), []).append((f["properties"], geom))
+        areas = []
+        for unit, items in by_unit.items():
+            group_by = ADM1_GROUPING.get(unit)
+            if group_by:
+                groups = {}
+                for props, geom in items:
+                    groups.setdefault(props[group_by] or props["name"] or UNNAMED_AREA, []).append(geom)
+                for value, geoms in groups.items():
+                    digest = hashlib.sha1(value.encode("utf-8")).hexdigest()[:6]
+                    areas.append({"id": f"{unit}-{digest}", "name": value, "unit": unit, "geom": unary_union(geoms)})
+                continue
+            counts = {}
+            for props, _ in items:
+                counts[props.get("name_en")] = counts.get(props.get("name_en"), 0) + 1
+            for props, geom in items:
+                en = props.get("name_en")
+                # A repeated name_en is a Natural Earth error: 21 Latvian units are "Valmiera".
+                name = (ADM1_NAME_FIXES.get(props["adm1_code"]) or (en if en and counts[en] == 1 else props["name"])
+                        or en or UNNAMED_AREA)
+                areas.append({"id": props["adm1_code"], "name": name, "unit": unit, "geom": geom})
+        return areas
+
+    def locate_area(self, unit, lat, lon):
+        """Return (area or None, distance_km) for a point, restricted to the areas of a unit."""
+        i, km = self._find(self.a_tree, self.a_geoms, lat, lon, allowed=lambda k: self.areas[k]["unit"] == unit)
+        return (self.areas[i] if i is not None else None), km
+
+    def country_parts(self, unit):
+        """Bounding boxes of a unit's main polygons, used to frame the camera in Explore mode."""
+        geom = next(g for g, p in zip(self.c_geoms, self.c_props) if p["ADM0_A3"] == unit)
+        parts = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
+        biggest = max(x.area for x in parts)
+        return [[round(v, 3) for v in x.bounds] for x in parts if x.area >= FIT_MIN_PART or x.area == biggest]
+
     @staticmethod
     def _find(tree, geoms, lat, lon, allowed=None):
         """Index of the polygon containing the point, else the nearest within COASTAL_MAX_KM.
@@ -412,6 +487,12 @@ class Locator:
                 loc["subdivision"] = ITALY_REGIONS_EN.get(raw, raw) if a3 == "ITA" else raw
                 if skm:
                     note = (note + "; " if note else "") + f"subdivision snapped ({skm:.1f} km away)"
+
+        area, _ = self.locate_area(a3, lat, lon)
+        loc["adm1"] = area["id"] if area else None
+        loc["adm1_name"] = area["name"] if area else None
+        if not area:
+            note = (note + "; " if note else "") + "no Explore area found (adm1: null)"
         return loc, note
 
 
@@ -443,10 +524,70 @@ def build(points):
             "lon": round(lon, 5),
             **(loc or {"country": None, "country_iso2": None, "territory": None,
                        "territory_iso2": None, "unit": None, "subdivision": None,
-                       "continent": None}),
+                       "continent": None, "adm1": None, "adm1_name": None}),
         })
         report.append((name, en_name, method))
-    return places, report, notes
+    return places, report, notes, locator
+
+
+def round_coords(obj):
+    if isinstance(obj, (list, tuple)):
+        if obj and isinstance(obj[0], (int, float)):
+            return [round(obj[0], ADM1_DECIMALS), round(obj[1], ADM1_DECIMALS)]
+        return [round_coords(o) for o in obj]
+    return obj
+
+
+def simplify_areas(geoms):
+    """Simplify a country's areas together, so that neighbours keep a shared border."""
+    pruned = []
+    for geom in geoms:
+        parts = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
+        biggest = max(x.area for x in parts)
+        pruned.append(unary_union([x for x in parts if x.area == biggest or x.area >= ADM1_MIN_ISLAND
+                                   or x.area >= biggest * ADM1_MIN_ISLAND_FRAC]))
+    # Size-aware: a country of tiny units (San Marino) gets a proportionally finer tolerance.
+    median = sorted(g.area for g in pruned)[len(pruned) // 2]
+    tolerance = min(ADM1_TOLERANCE, median ** 0.5 / 25)
+    simplified = shapely.coverage_simplify(pruned, tolerance)
+    return [s if not s.is_empty else g for s, g in zip(simplified, pruned)]
+
+
+def adm1_version():
+    """Changes when the area files must be rebuilt (source or simplification settings)."""
+    settings = [naturalearth.NE_VERSION, naturalearth.ADMIN0, naturalearth.ADMIN1, ADM1_GROUPING, ADM1_NAME_FIXES,
+                ADM1_TOLERANCE, ADM1_MIN_ISLAND, ADM1_MIN_ISLAND_FRAC, ADM1_DECIMALS, FIT_MIN_PART]
+    return hashlib.sha1(json.dumps(settings, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+
+
+def write_area_files(places, locator):
+    """Keep one data/geo/adm1/<ADM0_A3>.json per visited unit; up-to-date files are left alone."""
+    ADM1_DIR.mkdir(parents=True, exist_ok=True)
+    version = adm1_version()
+    visited = {p["unit"] for p in places if p["unit"]}
+    for path in ADM1_DIR.glob("*.json"):
+        if path.stem not in visited:
+            path.unlink()
+            print(f"  Removed {path.name}: no longer visited")
+    for unit in sorted(visited):
+        path = ADM1_DIR / f"{unit}.json"
+        if read_json(path, {}).get("version") == version:
+            continue
+        areas = sorted((a for a in locator.areas if a["unit"] == unit), key=lambda a: a["id"])
+        geoms = simplify_areas([a["geom"] for a in areas]) if areas else []
+        collection = {
+            "type": "FeatureCollection",
+            "version": version,
+            "parts": locator.country_parts(unit),
+            "features": [{
+                "type": "Feature",
+                "properties": {"id": a["id"], "name": a["name"]},
+                "geometry": {"type": mapping(g)["type"], "coordinates": round_coords(mapping(g)["coordinates"])},
+            } for a, g in zip(areas, geoms)],
+        }
+        text = json.dumps(collection, ensure_ascii=False, separators=(",", ":")) + "\n"
+        write_if_changed(path, text)
+        print(f"  Wrote {path.name}: {len(areas)} areas, {len(text.encode('utf-8')) / 1000:.0f} KB")
 
 
 def write_report(report, notes):
@@ -494,8 +635,9 @@ def main():
             raise SyncError(f"The layer '{LAYER_NAME}' contains 0 places: nothing was changed.")
         print(f"Read {len(points)} places from {source}.")
 
-        places, report, notes = build(points)
+        places, report, notes, locator = build(points)
         write_report(report, notes)
+        write_area_files(places, locator)
         if write_if_changed(PLACES_FILE, dump_json({"places": places})):
             status["last_data_change"] = status["last_check"]
             message = f"Updated: {len(places)} places."

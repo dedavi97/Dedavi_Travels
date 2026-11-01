@@ -14,6 +14,8 @@
     visitedBorder: "#a9843f",
     pin: "#f2b544",
     pinStroke: "#fff6e0",
+    exploreVisited: "#b98f3c",  // brighter than "visited", still darker than the pins
+    exploreLine: "#ffffff",
   };
   var START_CENTER = [12, 46];        // Europe
   var ROTATE_DEG_PER_SEC = 2.5;       // gentle auto-rotation speed
@@ -21,6 +23,9 @@
   var CLUSTER_RADIUS = 26;            // px: smaller = groups split sooner while zooming in
   var PLACE_ZOOM = 6.5;               // zoom used when flying to a single place
   var PROJECTION_KEY = "dt.projection";
+  var EXPLORE_DIM = 0.35;             // opacity of the other countries in Explore mode
+  var EXPLORE_MAX_ZOOM = 9;
+  var NO_HOVER = ["==", ["get", "id"], ""];
 
   var map = null;
   var loaded = false;
@@ -29,7 +34,14 @@
   var rotating = false;
   var visible = false;
   var popup = null;
-  var tooltip, toggleBtn;
+  var tooltip, tooltipName, tooltipBtn, toggleBtn, backBtn, notice;
+  var tooltipPinned = false;
+
+  var exploring = null;      // ADM0_A3 of the explored country
+  var exploreRequest = null; // the country being loaded (the latest request wins)
+  var savedCamera = null;    // camera to restore on "World"
+  var areaFiles = {};        // loaded data/geo/adm1/<unit>.json files
+  var noticeTimer = null;
 
   // ---------------------------------------------------------------- style
 
@@ -70,8 +82,13 @@
     return ["match", ["get", "tone"], 1, colors[1], 2, colors[2], 3, colors[3], colors[0]];
   }
 
+  function isVisited() { return ["in", ["get", "id"], ["literal", visitedUnits()]]; }
+
+  function landColor() { return ["case", isVisited(), byTone(COLORS.visited), byTone(COLORS.land)]; }
+
+  function borderColor() { return ["case", isVisited(), COLORS.visitedBorder, COLORS.border]; }
+
   function buildStyle() {
-    var isVisited = ["in", ["get", "id"], ["literal", visitedUnits()]];
     return {
       version: 8,
       projection: projectionSpec(projection),
@@ -99,7 +116,7 @@
         { id: "graticule", type: "line", source: "graticule",
           paint: { "line-color": "#ffffff", "line-opacity": 0.045, "line-width": 0.6 } },
         { id: "land", type: "fill", source: "countries",
-          paint: { "fill-color": ["case", isVisited, byTone(COLORS.visited), byTone(COLORS.land)] } },
+          paint: { "fill-color": landColor() } },
         { id: "lakes", type: "fill", source: "water", filter: ["==", ["get", "kind"], "lake"],
           paint: { "fill-color": COLORS.lake } },
         { id: "rivers", type: "line", source: "water",
@@ -110,7 +127,7 @@
             "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.4, 6, 1.2],
             "line-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.5, 5, 0.9],
           } },
-        { id: "land-hover", type: "fill", source: "countries", filter: ["==", ["get", "id"], ""],
+        { id: "land-hover", type: "fill", source: "countries", filter: NO_HOVER,
           paint: { "fill-color": "#ffffff", "fill-opacity": 0.07 } },
         { id: "subdivisions", type: "line", source: "subdivisions",
           paint: {
@@ -120,7 +137,7 @@
           } },
         { id: "borders", type: "line", source: "countries",
           paint: {
-            "line-color": ["case", isVisited, COLORS.visitedBorder, COLORS.border],
+            "line-color": borderColor(),
             "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.4, 6, 1],
           } },
         { id: "pins", type: "circle", source: "places", filter: ["!", ["has", "point_count"]],
@@ -197,16 +214,188 @@
       .addTo(map);
   }
 
-  function showTooltip(point, name) {
-    tooltip.textContent = name;
-    tooltip.style.left = point.x + "px";
-    tooltip.style.top = point.y + "px";
+  // exploreUnit: show the Explore button (the tooltip then stays put so it can be pressed).
+  function showTooltip(point, name, exploreUnit) {
+    tooltipName.textContent = name;
+    tooltipPinned = !!exploreUnit;
+    tooltip.classList.toggle("is-pinned", tooltipPinned);
+    tooltipBtn.hidden = !exploreUnit;
+    tooltipBtn.dataset.unit = exploreUnit || "";
     tooltip.hidden = false;
+    // Keep it inside the map, the button above all.
+    var box = tooltip.parentNode, w = tooltip.offsetWidth, h = tooltip.offsetHeight;
+    tooltip.style.left = Math.max(0, Math.min(point.x, box.clientWidth - w - 20)) + "px";
+    tooltip.style.top = Math.max(h / 2 + 4, Math.min(point.y, box.clientHeight - h / 2 - 4)) + "px";
   }
 
   function hideTooltip() {
     tooltip.hidden = true;
-    if (map) map.setFilter("land-hover", ["==", ["get", "id"], ""]);
+    tooltipPinned = false;
+    if (map && loaded) {
+      map.setFilter("land-hover", NO_HOVER);
+      if (map.getLayer("explore-hover")) map.setFilter("explore-hover", NO_HOVER);
+    }
+  }
+
+  function showNotice(text) {
+    clearTimeout(noticeTimer);
+    notice.textContent = text;
+    notice.hidden = false;
+    if (text) noticeTimer = setTimeout(hideNotice, 4000);
+  }
+
+  function hideNotice() {
+    clearTimeout(noticeTimer);
+    notice.hidden = true;
+  }
+
+  // ---------------------------------------------------------------- explore mode
+  // A visited country filled with its first-level areas: the ones with a pin are lit.
+
+  function isVisitedUnit(unit) { return visitedUnits().indexOf(unit) >= 0; }
+
+  function loadAreas(unit) {
+    if (areaFiles[unit]) return Promise.resolve(areaFiles[unit]);
+    return fetch("data/geo/adm1/" + unit + ".json", { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(unit + ": HTTP " + r.status);
+      return r.json();
+    }).then(function (data) {
+      areaFiles[unit] = data;
+      return data;
+    });
+  }
+
+  function placesIn(unit) { return DT.data.places.filter(function (p) { return p.unit === unit; }); }
+
+  // Countries can have far-away parts (French Guiana, Alaska, Hawaii): frame only the
+  // parts with a pin. Pins just off a part (coastal snap) go with the nearest one.
+  function exploreBounds(unit) {
+    var parts = areaFiles[unit].parts;
+    var chosen = {};
+    placesIn(unit).forEach(function (p) {
+      var best = -1, bestDist = Infinity;
+      parts.forEach(function (b, i) {
+        var dx = Math.max(b[0] - p.lon, 0, p.lon - b[2]);
+        var dy = Math.max(b[1] - p.lat, 0, p.lat - b[3]);
+        var dist = dx * dx + dy * dy;
+        if (dist === 0) chosen[i] = true;
+        if (dist < bestDist) { best = i; bestDist = dist; }
+      });
+      if (best >= 0) chosen[best] = true;
+    });
+    var picked = parts.filter(function (b, i) { return chosen[i]; });
+    if (!picked.length) picked = parts;
+    var west = Math.min.apply(null, picked.map(function (b) { return b[0]; }));
+    var east = Math.max.apply(null, picked.map(function (b) { return b[2]; }));
+    // Parts on both sides of the antimeridian: go the short way round.
+    if (east - west > 180) {
+      var lefts = picked.map(function (b) { return b[0] < 0 ? b[0] + 360 : b[0]; });
+      var rights = picked.map(function (b) { return b[2] < 0 ? b[2] + 360 : b[2]; });
+      west = Math.min.apply(null, lefts);
+      east = Math.max.apply(null, rights);
+    }
+    return [
+      [west, Math.min.apply(null, picked.map(function (b) { return b[1]; }))],
+      [east, Math.max.apply(null, picked.map(function (b) { return b[3]; }))],
+    ];
+  }
+
+  function fitExplore(animate) {
+    var narrow = map.getContainer().clientWidth < 500;
+    map.fitBounds(exploreBounds(exploring), {
+      padding: narrow ? { top: 60, bottom: 30, left: 20, right: 20 } : { top: 70, bottom: 50, left: 60, right: 60 },
+      maxZoom: EXPLORE_MAX_ZOOM,
+      duration: animate && !DT.reducedMotion ? 1400 : 0,
+    });
+  }
+
+  function applyExploreStyle(unit) {
+    var isExplored = ["==", ["get", "id"], unit];
+    // The explored country is drawn by its areas alone: its coarser world shape would
+    // leave a second, mismatched coastline.
+    map.setPaintProperty("land", "fill-opacity", ["case", isExplored, 0, EXPLORE_DIM]);
+    map.setPaintProperty("borders", "line-opacity", ["case", isExplored, 0, EXPLORE_DIM]);
+    map.setLayoutProperty("subdivisions", "visibility", "none");
+
+    var lit = {};
+    placesIn(unit).forEach(function (p) { if (p.adm1) lit[p.adm1] = true; });
+    var source = map.getSource("explore-areas");
+    if (source) {
+      source.setData(areaFiles[unit]);
+    } else {
+      map.addSource("explore-areas", { type: "geojson", data: areaFiles[unit] });
+      map.addLayer({ id: "explore-fill", type: "fill", source: "explore-areas", paint: {} }, "lakes");
+      map.addLayer({ id: "explore-hover", type: "fill", source: "explore-areas", filter: NO_HOVER,
+        paint: { "fill-color": "#ffffff", "fill-opacity": 0.1 } }, "lakes");
+      map.addLayer({ id: "explore-line", type: "line", source: "explore-areas",
+        paint: {
+          "line-color": COLORS.exploreLine,
+          "line-opacity": 0.28,
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.4, 8, 1],
+        } }, "borders");
+    }
+    map.setPaintProperty("explore-fill", "fill-color",
+      ["case", ["in", ["get", "id"], ["literal", Object.keys(lit)]], COLORS.exploreVisited, byTone(COLORS.land)]);
+  }
+
+  function clearExploreStyle() {
+    ["explore-line", "explore-hover", "explore-fill"].forEach(function (id) {
+      if (map.getLayer(id)) map.removeLayer(id);
+    });
+    if (map.getSource("explore-areas")) map.removeSource("explore-areas");
+    map.setPaintProperty("land", "fill-opacity", 1);
+    map.setPaintProperty("borders", "line-opacity", 1);
+    map.setLayoutProperty("subdivisions", "visibility", "visible");
+  }
+
+  function enterExplore(unit) {
+    if (unit === exploring || unit === exploreRequest || !isVisitedUnit(unit)) return;
+    exploreRequest = unit;
+    whenLoaded(function () {
+      if (exploreRequest !== unit) return; // left the globe before the map was ready
+      stopRotation();
+      hideTooltip();
+      showNotice("Loading areas…");
+      clearTimeout(noticeTimer);
+      loadAreas(unit).then(function () {
+        if (exploreRequest !== unit) return; // left or changed country while loading
+        exploreRequest = null;
+        hideNotice();
+        if (!savedCamera) {
+          savedCamera = { center: map.getCenter(), zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() };
+        }
+        if (popup) popup.remove();
+        exploring = unit;
+        applyExploreStyle(unit);
+        backBtn.hidden = false;
+        fitExplore(true);
+      }).catch(function (err) {
+        console.error(err);
+        if (exploreRequest !== unit) return;
+        exploreRequest = null;
+        showNotice("Couldn't load the areas of this country.");
+        if (!exploring) location.hash = "#/globe"; // stay in world view
+      });
+    });
+  }
+
+  function exitExplore(animate) {
+    if (exploreRequest) hideNotice(); // "Loading..." only: a load error must stay readable
+    exploreRequest = null;
+    if (!exploring) return;
+    exploring = null;
+    backBtn.hidden = true;
+    hideTooltip();
+    if (popup) popup.remove();
+    clearExploreStyle();
+    var camera = savedCamera;
+    savedCamera = null;
+    if (animate && !DT.reducedMotion) map.easeTo(Object.assign({ duration: 1000 }, camera));
+    else map.jumpTo(camera);
+  }
+
+  function onKeyDown(e) {
+    if (e.key === "Escape" && exploring && visible) location.hash = "#/globe";
   }
 
   // ---------------------------------------------------------------- rotation
@@ -248,13 +437,19 @@
     DT.store.set(PROJECTION_KEY, name);
     updateToggle();
     if (name !== "globe") stopRotation();
-    if (DT.reducedMotion) { map.setProjection(projectionSpec(name)); return; }
+    hideTooltip();
+    if (DT.reducedMotion) {
+      map.setProjection(projectionSpec(name));
+      if (exploring) fitExplore(false);
+      return;
+    }
 
     var el = map.getContainer();
     el.classList.add("is-fading");
     setTimeout(function () {
       if (projection !== name) return; // toggled again mid-fade
       map.setProjection(projectionSpec(name));
+      if (exploring) fitExplore(false);
       requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.remove("is-fading"); }); });
     }, FADE_MS);
   }
@@ -288,7 +483,16 @@
 
   function init(container) {
     tooltip = DT.$("#map-tooltip");
+    tooltipName = DT.$("#map-tooltip-name");
+    tooltipBtn = DT.$("#map-tooltip-explore");
     toggleBtn = DT.$("#projection-toggle");
+    backBtn = DT.$("#explore-back");
+    notice = DT.$("#map-notice");
+    tooltipBtn.addEventListener("click", function () {
+      location.hash = "#/globe?explore=" + encodeURIComponent(tooltipBtn.dataset.unit);
+    });
+    backBtn.addEventListener("click", function () { location.hash = "#/globe"; });
+    document.addEventListener("keydown", onKeyDown);
     projection = DT.store.get(PROJECTION_KEY) === "mercator" ? "mercator" : "globe";
     updateToggle();
 
@@ -343,23 +547,36 @@
     map.on("mouseenter", "pins", function () { map.getCanvas().style.cursor = "pointer"; hideTooltip(); });
     map.on("mouseleave", "pins", function () { map.getCanvas().style.cursor = ""; });
 
-    // Country name on hover (desktop) or tap (touch).
-    function countryAt(e) {
+    // What is under the pointer: nothing over a pin, else an Explore area, else a country.
+    function featureAt(e) {
       if (map.queryRenderedFeatures(e.point, { layers: ["pins"] }).length) return null;
+      if (exploring) {
+        var a = map.queryRenderedFeatures(e.point, { layers: ["explore-fill"] })[0];
+        if (a) return { area: true, id: a.properties.id, name: a.properties.name };
+      }
       var f = map.queryRenderedFeatures(e.point, { layers: ["land"] })[0];
-      return f ? f.properties : null;
+      return f ? { area: false, id: f.properties.id, name: f.properties.name } : null;
     }
+    function highlight(f) {
+      map.setFilter("land-hover", f.area ? NO_HOVER : ["==", ["get", "id"], f.id]);
+      if (map.getLayer("explore-hover")) map.setFilter("explore-hover", f.area ? ["==", ["get", "id"], f.id] : NO_HOVER);
+    }
+    // Hover: name only. A click on a visited country also offers Explore: entering
+    // only from that button avoids accidental entries while moving the globe.
     map.on("mousemove", function (e) {
-      var c = countryAt(e);
-      if (!c) { hideTooltip(); return; }
-      map.setFilter("land-hover", ["==", ["get", "id"], c.id]);
-      showTooltip(e.point, c.name);
+      if (tooltipPinned) return;
+      var f = featureAt(e);
+      if (!f) { hideTooltip(); return; }
+      highlight(f);
+      showTooltip(e.point, f.name);
     });
     map.on("click", function (e) {
-      var c = countryAt(e);
-      if (c) showTooltip(e.point, c.name); else hideTooltip();
+      var f = featureAt(e);
+      if (!f) { hideTooltip(); return; }
+      highlight(f);
+      showTooltip(e.point, f.name, !f.area && f.id !== exploring && isVisitedUnit(f.id) ? f.id : null);
     });
-    map.on("mouseout", hideTooltip);
+    map.on("mouseout", function () { if (!tooltipPinned) hideTooltip(); });
     map.on("movestart", function () { if (!tooltip.hidden) hideTooltip(); });
   }
 
@@ -381,11 +598,17 @@
       visible = true;
       if (!map) init(container);
       else map.resize();
-      if (params.place) flyToPlace(params.place);
+      if (params.explore && isVisitedUnit(params.explore)) {
+        enterExplore(params.explore);
+      } else {
+        exitExplore(!params.place);
+        if (params.place) flyToPlace(params.place);
+      }
     },
     hide: function () {
       visible = false;
       if (tooltip) hideTooltip();
+      if (map) exitExplore(false);
     },
   };
 })();

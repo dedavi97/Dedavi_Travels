@@ -24,6 +24,8 @@
         "<p>I keep my travels on a Google My Maps map. Twice a month this site automatically reads the latest version " +
         "of that map, finds the English name of each place and works out which country and region it belongs to. " +
         "New pins appear here on their own: there is nothing to update by hand.</p>" +
+        "<p>On the globe, click or tap a country I have visited and press Explore to see its provinces, " +
+        "states or counties: the ones where I have been are highlighted.</p>" +
 
         "<h2>Who made it</h2>" +
         '<p>Davide — <a href="https://github.com/dedavi97" target="_blank" rel="noopener">github.com/dedavi97</a></p>' +
