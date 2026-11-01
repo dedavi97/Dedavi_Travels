@@ -175,12 +175,20 @@
     "name": "Collegno",
     "method": "search"
   },
+  "Courmayeur|45.79084|6.97094": {
+    "name": "Courmayeur",
+    "method": "search"
+  },
   "Cracovia|50.06465|19.94498": {
     "name": "Krakow",
     "method": "search"
   },
   "Cremona|45.13331|10.02270": {
     "name": "Cremona",
+    "method": "search"
+  },
+  "Cuneo|44.38448|7.54267": {
+    "name": "Cuneo",
     "method": "search"
   },
   "Dhermi|40.15097|19.64161": {
@@ -217,6 +225,10 @@
   },
   "Fontane Bianche|36.96500|15.21490": {
     "name": "Fontane Bianche",
+    "method": "search"
+  },
+  "Fossano|44.54956|7.72505": {
+    "name": "Fossano",
     "method": "search"
   },
   "Gand|51.04999|3.73039": {
@@ -497,6 +509,10 @@
   },
   "Praga|50.07554|14.43780": {
     "name": "Prague",
+    "method": "search"
+  },
+  "Racconigi|44.76818|7.67574": {
+    "name": "Racconigi",
     "method": "search"
   },
   "Recanati|43.40227|13.55389": {

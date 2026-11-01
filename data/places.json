@@ -2477,6 +2477,62 @@
       "unit": "ITA",
       "subdivision": "Piedmont",
       "continent": "Europe"
+    },
+    {
+      "id": "9586e3b8ab",
+      "name": "Courmayeur",
+      "original_name": "Courmayeur",
+      "lat": 45.79084,
+      "lon": 6.97094,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Aosta Valley",
+      "continent": "Europe"
+    },
+    {
+      "id": "86bc21ddc2",
+      "name": "Racconigi",
+      "original_name": "Racconigi",
+      "lat": 44.76818,
+      "lon": 7.67574,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Piedmont",
+      "continent": "Europe"
+    },
+    {
+      "id": "02e3e54bed",
+      "name": "Fossano",
+      "original_name": "Fossano",
+      "lat": 44.54956,
+      "lon": 7.72505,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Piedmont",
+      "continent": "Europe"
+    },
+    {
+      "id": "1dd33dd2e5",
+      "name": "Cuneo",
+      "original_name": "Cuneo",
+      "lat": 44.38448,
+      "lon": 7.54267,
+      "country": "Italy",
+      "country_iso2": "IT",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "ITA",
+      "subdivision": "Piedmont",
+      "continent": "Europe"
     }
   ]
 }
