@@ -44,6 +44,8 @@ USER_AGENT = f"Dedavi_Travels/1.0 (+{REPO_URL})"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"
 NOMINATIM_MIN_INTERVAL = 1.1  # seconds between requests (policy: max 1 per second)
 SEARCH_BOX_DEG = 0.5          # search viewbox: +/- this many degrees around the point
+SEARCH_MAX_KM = 15            # a search result whose extent is farther from the pin is ignored
+SEARCH_LIMIT = 5              # results looked at, in Nominatim's ranking order
 COASTAL_MAX_KM = 25           # points outside every polygon snap to one this close
 
 # Countries that get a subdivision level in the stats (by Natural Earth ADM0_A3).
@@ -152,6 +154,15 @@ def haversine_km(lat1, lon1, lat2, lon2):
     return 2 * r * math.asin(math.sqrt(a))
 
 
+def bbox_distance_km(result, lat, lon):
+    """Distance from a point to a Nominatim result's bounding box (0 inside it)."""
+    try:
+        s, n, w, e = (float(v) for v in result["boundingbox"])
+    except (KeyError, TypeError, ValueError):
+        return haversine_km(lat, lon, float(result["lat"]), float(result["lon"]))
+    return haversine_km(lat, lon, min(max(lat, s), n), min(max(lon, w), e))
+
+
 def place_key(name, lat, lon):
     return f"{name}|{lat:.5f}|{lon:.5f}"
 
@@ -253,13 +264,21 @@ class Nominatim:
         return details.get("name:en") or result.get("name") or None
 
     def search(self, name, lat, lon):
+        """English name of the best-ranked result near the pin, or None.
+
+        The viewbox alone is too wide: "Varsavia" (a pin in central Warsaw) matched
+        Warsaw-Modlin Airport, 35 km away. Results are measured from the pin to their
+        bounding box, so a park or lake that contains the pin still counts as near."""
         d = SEARCH_BOX_DEG
         res = self.get("search", {
-            "q": name, "format": "jsonv2", "limit": 1, "bounded": 1,
+            "q": name, "format": "jsonv2", "limit": SEARCH_LIMIT, "bounded": 1,
             "viewbox": f"{lon - d},{lat + d},{lon + d},{lat - d}",
             "accept-language": "en", "namedetails": 1,
         })
-        return self.english_name(res[0]) if res else None
+        for r in res or []:
+            if bbox_distance_km(r, lat, lon) <= SEARCH_MAX_KM:
+                return self.english_name(r)
+        return None
 
     def reverse(self, lat, lon):
         res = self.get("reverse", {
