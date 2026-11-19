@@ -211,3 +211,7 @@ Places: 189. Fallbacks (original name kept): 0.
 - **Nida** (55.30327, 21.00679): snapped to Lithuania (0.1 km away)
 - **Narva** (59.37969, 28.17908): country set from OpenStreetMap (EE); Natural Earth said Russia
 - **Portofino** (44.30316, 9.20979): snapped to Italy (0.3 km away); subdivision snapped (0.3 km away)
+
+## Trips
+
+All stops of the 2 trips match a pin.
