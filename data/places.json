@@ -3023,6 +3023,22 @@
       "continent": "Europe",
       "adm1": "BEL-3477",
       "adm1_name": "Luxembourg"
+    },
+    {
+      "id": "973d36846d",
+      "name": "Ostrog",
+      "original_name": "Ostrog",
+      "lat": 42.66864,
+      "lon": 19.02978,
+      "country": "Montenegro",
+      "country_iso2": "ME",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "MNE",
+      "subdivision": null,
+      "continent": "Europe",
+      "adm1": "MNE-1511",
+      "adm1_name": "Danilovgrad"
     }
   ]
 }
