@@ -172,7 +172,7 @@
 
   var ANIM_MIN_MS = 2000, ANIM_MAX_MS = 4000;
 
-  // opts: { before: layer id to insert under, onStopClick(stop) }
+  // opts: { before: layer id to insert under, onStopClick(stop), onStopHover(stop or null, lngLat) }
   DT.TripRoute = function (map, opts) {
     this.map = map;
     this.opts = opts || {};
@@ -236,6 +236,10 @@
         ev.stopPropagation();
         if (self.opts.onStopClick) self.opts.onStopClick(m.stop);
       });
+      if (self.opts.onStopHover) {
+        el.addEventListener("mouseenter", function () { self.opts.onStopHover(m.stop, pts[m.first]); });
+        el.addEventListener("mouseleave", function () { self.opts.onStopHover(null); });
+      }
       m.el = el;
       m.marker = new maplibregl.Marker({ element: el }).setLngLat(pts[m.first]);
     });

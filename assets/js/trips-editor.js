@@ -15,7 +15,7 @@
   var live = null;     // { revision, trips } as published
   var draft = null;    // { baseRevision, base, trips, deleted, exported? }
   var editingId = null;
-  var map = null, route = null, mapLoaded = false;
+  var map = null, route = null, mapLoaded = false, hover = null;
   var dragFrom = null;
   var lastExport = null; // { revision, picker } for the upload steps box
 
@@ -387,11 +387,18 @@
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-left");
     map.addControl(new maplibregl.AttributionControl({ compact: true,
       customAttribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' }), "bottom-right");
+    // Name of the place under the pointer, next to it.
+    hover = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: "ed-hover", maxWidth: "260px" });
+    function showHover(lngLat, name) { hover.setLngLat(lngLat).setText(name).addTo(map); }
     route = new DT.TripRoute(map, {
       before: "pins",
       onStopClick: function (s) {
         var p = !s.missing && DT.placeById(s.place_id);
         if (p && editing()) addStop(p);
+      },
+      onStopHover: function (s, lngLat) {
+        if (s) showHover(lngLat, s.name + (s.missing ? " (pin no longer on the map)" : ""));
+        else hover.remove();
       },
     });
     map.on("load", function () {
@@ -408,10 +415,13 @@
     map.on("mousemove", "pins", function (e) {
       map.getCanvas().style.cursor = "pointer";
       var p = DT.placeById(e.features[0].properties.id);
-      if (p) $("#ed-map-hint").textContent = p.name + (editing() ? " — click to add it as a stop" : "");
+      if (!p) return;
+      showHover([p.lon, p.lat], p.name);
+      $("#ed-map-hint").textContent = p.name + (editing() ? " — click to add it as a stop" : "");
     });
     map.on("mouseleave", "pins", function () {
       map.getCanvas().style.cursor = "";
+      hover.remove();
       $("#ed-map-hint").textContent = mapHint();
     });
   }
@@ -421,7 +431,9 @@
   function fitTrip() {
     var t = editing();
     if (!mapLoaded || !t || !t.stops.length) return;
-    map.fitBounds(DT.tripBounds(t), { padding: 50, maxZoom: 7, duration: 0 });
+    // On wide screens the preview card floats over the map's right side: keep the route clear of it.
+    var floating = getComputedStyle($("#ed-preview")).position === "absolute" && $("#ed-map").clientWidth > 760;
+    map.fitBounds(DT.tripBounds(t), { padding: { top: 50, bottom: 50, left: 50, right: floating ? 340 : 50 }, maxZoom: 7, duration: 0 });
   }
 
   function renderPreview() {
@@ -436,7 +448,7 @@
       box.innerHTML = t ? '<p class="muted">Add at least 2 stops to see the trip stats.</p>' : "";
       return;
     }
-    box.innerHTML = '<h3 class="sub">Preview</h3><div class="ed-card">' + DT.tripCardHtml(t) + "</div>";
+    box.innerHTML = '<div class="ed-card"><div class="ed-card-title">' + esc(t.name || "(no name)") + "</div>" + DT.tripCardHtml(t) + "</div>";
   }
 
   // ---------------------------------------------------------------- export
@@ -644,11 +656,11 @@
       '<div class="page editor">' +
         '<header class="ed-head"><div><h1>Trips editor</h1><p class="muted" id="ed-status">Loading…</p></div>' +
           '<button class="btn btn-primary" type="button" data-act="export" disabled>Save file…</button></header>' +
-        '<div id="ed-notice"></div>' +
+        // The left column scrolls on its own; the map stays put.
         '<div class="ed-body">' +
-          '<div class="ed-side" id="ed-side"></div>' +
-          '<div class="ed-main"><div class="ed-map" id="ed-map"></div><p class="muted ed-hint" id="ed-map-hint"></p>' +
-            '<div id="ed-preview"></div></div>' +
+          '<div class="ed-side"><div id="ed-notice"></div><div class="ed-panel" id="ed-side"></div></div>' +
+          '<div class="ed-main"><div class="ed-map" id="ed-map"></div><div class="ed-preview" id="ed-preview"></div>' +
+            '<p class="muted ed-hint" id="ed-map-hint"></p></div>' +
         "</div>" +
         '<dialog class="ed-dialog" id="ed-dialog"></dialog>' +
       "</div>";
