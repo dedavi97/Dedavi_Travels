@@ -1,0 +1,415 @@
+{
+  "schema": 1,
+  "revision": 1,
+  "updated": "2026-11-19T14:36:27Z",
+  "trips": [
+    {
+      "id": "polonia-2026-zqzk",
+      "name": "Polonia",
+      "year": 2026,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "e5110fedb0",
+          "name": "Warsaw-Modlin Airport",
+          "original_name": "Varsavia",
+          "lat": 52.22968,
+          "lon": 21.01223,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "a93bb2e026",
+          "name": "Gdańsk",
+          "original_name": "Danzica",
+          "lat": 54.35203,
+          "lon": 18.64664,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "28e7222c88",
+          "name": "Sopot",
+          "original_name": "Sopot",
+          "lat": 54.44158,
+          "lon": 18.5601,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "c42c86a89f",
+          "name": "Gdynia",
+          "original_name": "Gdynia",
+          "lat": 54.51835,
+          "lon": 18.52919,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "a93bb2e026",
+          "name": "Gdańsk",
+          "original_name": "Danzica",
+          "lat": 54.35203,
+          "lon": 18.64664,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "1925778d9a",
+          "name": "Malbork",
+          "original_name": "Malbork",
+          "lat": 54.03613,
+          "lon": 19.03798,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "a93bb2e026",
+          "name": "Gdańsk",
+          "original_name": "Danzica",
+          "lat": 54.35203,
+          "lon": 18.64664,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "plane"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "plane"
+        }
+      ]
+    },
+    {
+      "id": "baltici-2slv",
+      "name": "Baltici",
+      "year": 2026,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "03a5062708",
+          "name": "Vilnius",
+          "original_name": "Vilnius",
+          "lat": 54.68716,
+          "lon": 25.27965,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "d3b88e9f57",
+          "name": "Trakai",
+          "original_name": "Trakai",
+          "lat": 54.63764,
+          "lon": 24.93408,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "03a5062708",
+          "name": "Vilnius",
+          "original_name": "Vilnius",
+          "lat": 54.68716,
+          "lon": 25.27965,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "9bf7fcf3dc",
+          "name": "Kaunas",
+          "original_name": "Kaunas",
+          "lat": 54.89852,
+          "lon": 23.9036,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "2134814caf",
+          "name": "Klaipėda",
+          "original_name": "Klaipėda",
+          "lat": 55.70329,
+          "lon": 21.14428,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "c27325eb8e",
+          "name": "Nida",
+          "original_name": "Nida",
+          "lat": 55.30327,
+          "lon": 21.00679,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "2134814caf",
+          "name": "Klaipėda",
+          "original_name": "Klaipėda",
+          "lat": 55.70329,
+          "lon": 21.14428,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "8fa10e7b87",
+          "name": "Riga",
+          "original_name": "Riga",
+          "lat": 56.96769,
+          "lon": 24.10562,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "7804eed877",
+          "name": "Sigulda",
+          "original_name": "Sigulda",
+          "lat": 57.13278,
+          "lon": 24.81628,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "8fa10e7b87",
+          "name": "Riga",
+          "original_name": "Riga",
+          "lat": 56.96769,
+          "lon": 24.10562,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "c3ffa0680c",
+          "name": "Jūrmala",
+          "original_name": "Jūrmala",
+          "lat": 56.96845,
+          "lon": 23.77375,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "8fa10e7b87",
+          "name": "Riga",
+          "original_name": "Riga",
+          "lat": 56.96769,
+          "lon": 24.10562,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "18c4966fb6",
+          "name": "Šiauliai",
+          "original_name": "Siauliai",
+          "lat": 55.93491,
+          "lon": 23.31368,
+          "country": "Lithuania",
+          "country_iso2": "LT"
+        },
+        {
+          "place_id": "01ef2641d9",
+          "name": "Jelgava",
+          "original_name": "Jelgava",
+          "lat": 56.65115,
+          "lon": 23.71964,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "8fa10e7b87",
+          "name": "Riga",
+          "original_name": "Riga",
+          "lat": 56.96769,
+          "lon": 24.10562,
+          "country": "Latvia",
+          "country_iso2": "LV"
+        },
+        {
+          "place_id": "85ddfaf3d3",
+          "name": "Tartu",
+          "original_name": "Tartu",
+          "lat": 58.37798,
+          "lon": 26.72904,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "287316ef4c",
+          "name": "Narva",
+          "original_name": "Narva",
+          "lat": 59.37969,
+          "lon": 28.17908,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "49d0450a64",
+          "name": "Tallinn",
+          "original_name": "Tallinn",
+          "lat": 59.43696,
+          "lon": 24.75357,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "a3500f6a4c",
+          "name": "Lahemaa National Park",
+          "original_name": "Parco nazionale Lahemaa",
+          "lat": 59.56766,
+          "lon": 25.78102,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "49d0450a64",
+          "name": "Tallinn",
+          "original_name": "Tallinn",
+          "lat": 59.43696,
+          "lon": 24.75357,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "c03151434c",
+          "name": "Helsinki",
+          "original_name": "Helsinki",
+          "lat": 60.16986,
+          "lon": 24.93838,
+          "country": "Finland",
+          "country_iso2": "FI"
+        },
+        {
+          "place_id": "49d0450a64",
+          "name": "Tallinn",
+          "original_name": "Tallinn",
+          "lat": 59.43696,
+          "lon": 24.75357,
+          "country": "Estonia",
+          "country_iso2": "EE"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "plane"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "ferry"
+        },
+        {
+          "mode": "ferry"
+        },
+        {
+          "mode": "plane"
+        }
+      ]
+    }
+  ]
+}
