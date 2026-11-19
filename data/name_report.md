@@ -189,7 +189,7 @@ Places: 187. Fallbacks (original name kept): 0.
 | Cadzand-Bad | Cadzand-Bad | search |
 | Siracusa | Syracuse | override |
 | Città del Vaticano | Vatican City | search |
-| Varsavia | Warsaw-Modlin Airport | search |
+| Varsavia | Warsaw | override |
 | Malbork | Malbork | search |
 | Danzica | Gdańsk | search |
 | Sopot | Sopot | search |
