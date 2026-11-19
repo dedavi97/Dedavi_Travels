@@ -171,6 +171,10 @@
     "name": "Grad Novigrad",
     "method": "search"
   },
+  "Città del Vaticano|41.90292|12.45339": {
+    "name": "Vatican City",
+    "method": "search"
+  },
   "Cogne|45.60832|7.35612": {
     "name": "Cogne",
     "method": "search"
@@ -193,6 +197,10 @@
   },
   "Cuneo|44.38448|7.54267": {
     "name": "Cuneo",
+    "method": "search"
+  },
+  "Danzica|54.35203|18.64664": {
+    "name": "Gdańsk",
     "method": "search"
   },
   "Dhermi|40.15097|19.64161": {
@@ -237,6 +245,10 @@
   },
   "Gand|51.04999|3.73039": {
     "name": "Ghent",
+    "method": "search"
+  },
+  "Gdynia|54.51835|18.52919": {
+    "name": "Gdynia",
     "method": "search"
   },
   "Genova|44.40714|8.93474": {
@@ -361,6 +373,10 @@
   },
   "Madrid|40.41673|-3.70329": {
     "name": "Madrid",
+    "method": "search"
+  },
+  "Malbork|54.03613|19.03798": {
+    "name": "Malbork",
     "method": "search"
   },
   "Maratea|39.99852|15.71833": {
@@ -603,6 +619,10 @@
     "name": "Sirmione",
     "method": "search"
   },
+  "Sopot|54.44158|18.56010": {
+    "name": "Sopot",
+    "method": "search"
+  },
   "Stoccolma|59.33270|18.06563": {
     "name": "Stockholm",
     "method": "search"
@@ -685,6 +705,10 @@
   },
   "Valsavarenche|45.58749|7.20978": {
     "name": "Valsavarenche",
+    "method": "search"
+  },
+  "Varsavia|52.22968|21.01223": {
+    "name": "Warsaw-Modlin Airport",
     "method": "search"
   },
   "Venaria Reale|45.13019|7.63120": {
