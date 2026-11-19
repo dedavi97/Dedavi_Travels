@@ -51,6 +51,10 @@
     "name": "Arles",
     "method": "search"
   },
+  "Arlon|49.67812|5.80370": {
+    "name": "Arlon",
+    "method": "search"
+  },
   "Assisi|43.07063|12.61967": {
     "name": "Assisi",
     "method": "search"
@@ -161,6 +165,10 @@
   },
   "Chambéry|45.56460|5.91778": {
     "name": "Chambéry",
+    "method": "search"
+  },
+  "Charleroi|50.40813|4.44761": {
+    "name": "Charleroi",
     "method": "search"
   },
   "Chimay|50.04701|4.32218": {

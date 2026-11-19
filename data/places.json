@@ -2991,6 +2991,38 @@
       "continent": "Europe",
       "adm1": "POL-3140",
       "adm1_name": "Pomeranian Voivodeship"
+    },
+    {
+      "id": "8704ee483b",
+      "name": "Charleroi",
+      "original_name": "Charleroi",
+      "lat": 50.40813,
+      "lon": 4.44761,
+      "country": "Belgium",
+      "country_iso2": "BE",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "BEL",
+      "subdivision": null,
+      "continent": "Europe",
+      "adm1": "BEL-2",
+      "adm1_name": "Hainaut"
+    },
+    {
+      "id": "7d4f0d1e79",
+      "name": "Arlon",
+      "original_name": "Arlon",
+      "lat": 49.67812,
+      "lon": 5.8037,
+      "country": "Belgium",
+      "country_iso2": "BE",
+      "territory": null,
+      "territory_iso2": null,
+      "unit": "BEL",
+      "subdivision": null,
+      "continent": "Europe",
+      "adm1": "BEL-3477",
+      "adm1_name": "Luxembourg"
     }
   ]
 }
