@@ -25,6 +25,8 @@
   var PROJECTION_KEY = "dt.projection";
   var EXPLORE_DIM = 0.35;             // opacity of the other countries in Explore mode
   var EXPLORE_MAX_ZOOM = 9;
+  var TRIP_MAX_ZOOM = PLACE_ZOOM;   // the world borders get blocky beyond this
+  var TRIP_DIM = 0.2;                 // opacity of the pins that are not in the shown trip
   var NO_HOVER = ["==", ["get", "id"], ""];
 
   var map = null;
@@ -42,6 +44,12 @@
   var savedCamera = null;    // camera to restore on "World"
   var areaFiles = {};        // loaded data/geo/adm1/<unit>.json files
   var noticeTimer = null;
+
+  var tripShown = null;      // id of the trip on the map
+  var tripRequest = null;    // trip waiting for the map to load (the latest request wins)
+  var tripCamera = null;     // camera to restore when leaving the trip
+  var tripRoute = null;      // DT.TripRoute
+  var tripsBtn, tripsPanel, tripsList, tripCard;
 
   // ---------------------------------------------------------------- style
 
@@ -88,10 +96,12 @@
 
   function borderColor() { return ["case", isVisited(), COLORS.visitedBorder, COLORS.border]; }
 
-  function buildStyle() {
+  // Also used by the trips editor (flat, no clustering, so every pin can be clicked).
+  function buildStyle(opts) {
+    opts = opts || {};
     return {
       version: 8,
-      projection: projectionSpec(projection),
+      projection: projectionSpec(opts.projection || projection),
       sky: {
         "sky-color": "#0a0f1d",
         "horizon-color": "#1b2a4a",
@@ -106,7 +116,7 @@
         places: {
           type: "geojson",
           data: placesGeoJson(),
-          cluster: true,
+          cluster: opts.cluster !== false,
           clusterRadius: CLUSTER_RADIUS,
           clusterMaxZoom: CLUSTER_MAX_ZOOM,
         },
@@ -151,6 +161,8 @@
       ],
     };
   }
+
+  DT.mapStyle = buildStyle;
 
   // ---------------------------------------------------------------- clusters
   // Cluster bubbles are HTML markers so their counts need no font server.
@@ -202,8 +214,12 @@
     var where = p.territory
       ? DT.escape(p.territory) + ", " + DT.escape(p.country)
       : DT.escape(p.country || "Unknown") + (p.subdivision ? " · " + DT.escape(p.subdivision) : "");
+    var trips = DT.tripsWithPlace(p.id);
     return '<div class="popup-title">' + DT.escape(p.name) + "</div>" +
-      '<div class="popup-sub">' + DT.placeFlag(p) + "<span>" + where + "</span></div>";
+      '<div class="popup-sub">' + DT.placeFlag(p) + "<span>" + where + "</span></div>" +
+      (trips.length ? '<div class="popup-trips">Part of: ' + trips.map(function (t) {
+        return '<a href="' + DT.tripLink(t) + '">' + DT.escape(t.name) + "</a>";
+      }).join(", ") + "</div>" : "");
   }
 
   function openPopup(p) {
@@ -395,7 +411,109 @@
   }
 
   function onKeyDown(e) {
-    if (e.key === "Escape" && exploring && visible) location.hash = "#/globe";
+    if (e.key !== "Escape" || !visible) return;
+    if (!tripsPanel.hidden) closeTripsPanel();
+    else if (exploring || tripShown) location.hash = "#/globe";
+  }
+
+  // ---------------------------------------------------------------- trips mode
+  // One trip drawn as numbered stops joined by straight legs, one style per transport mode.
+
+  function renderTripsList() {
+    tripsList.innerHTML = DT.sortTrips(DT.data.trips).map(function (t) {
+      return '<li><a class="trip-row' + (t.id === tripShown ? " is-active" : "") + '" href="' + DT.tripLink(t) + '">' +
+        '<span class="trip-row-name">' + DT.escape(t.name) + "</span>" +
+        '<span class="trip-row-year">' + (t.year != null ? DT.escape(t.year) : "") + "</span>" +
+        '<span class="trip-row-modes">' + DT.modeIcons(t) + "</span>" +
+        '<span class="trip-row-km">' + DT.formatNumber(DT.tripStats(t).km) + " km</span></a></li>";
+    }).join("");
+  }
+
+  function openTripsPanel() {
+    renderTripsList();
+    hideTooltip();
+    tripsPanel.hidden = false;
+    tripsBtn.setAttribute("aria-expanded", "true");
+  }
+
+  function closeTripsPanel() {
+    tripsPanel.hidden = true;
+    tripsBtn.setAttribute("aria-expanded", "false");
+  }
+
+  // Leave room for the trip card: on the left on wide screens, at the bottom on narrow ones.
+  function tripPadding() {
+    var el = map.getContainer(), w = el.clientWidth, h = el.clientHeight;
+    if (w <= 640) return { top: 64, bottom: Math.round(h * 0.42) + 16, left: 30, right: 30 };
+    return { top: 70, bottom: 50, left: 360, right: 60 };
+  }
+
+  function fitTrip(animate) {
+    var t = DT.tripById(tripShown);
+    if (!t) return;
+    map.fitBounds(DT.tripBounds(t), {
+      padding: tripPadding(),
+      maxZoom: TRIP_MAX_ZOOM,
+      duration: animate && !DT.reducedMotion ? 1200 : 0,
+    });
+  }
+
+  function fillTripCard(t) {
+    tripCard.innerHTML = '<div class="trip-card-head"><div><div class="trip-card-title">' + DT.escape(t.name) + "</div>" +
+      (t.year != null ? '<div class="muted">' + DT.escape(t.year) + "</div>" : "") + "</div>" +
+      '<button class="trip-card-close" type="button" aria-label="Close trip">×</button></div>' +
+      '<div class="trip-card-body">' + DT.tripCardHtml(t) + "</div>";
+    tripCard.querySelector(".trip-card-close").addEventListener("click", function () { location.hash = "#/globe"; });
+  }
+
+  function setTripDim(t) {
+    var opacity = t ? ["case", ["in", ["get", "id"], ["literal", t.stops.map(function (s) { return s.place_id; })]], 1, TRIP_DIM] : 1;
+    map.setPaintProperty("pins", "circle-opacity", opacity);
+    map.setPaintProperty("pins", "circle-stroke-opacity", opacity);
+    map.getContainer().classList.toggle("is-trip", !!t);
+  }
+
+  function enterTrip(id) {
+    tripRequest = id;
+    whenLoaded(function () {
+      var t = DT.tripById(id);
+      if (!t || tripRequest !== id) return;
+      tripRequest = null;
+      stopRotation();
+      hideTooltip();
+      closeTripsPanel();
+      if (popup) popup.remove();
+      if (!tripCamera) {
+        tripCamera = { center: map.getCenter(), zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() };
+      }
+      tripShown = id;
+      backBtn.hidden = false;
+      setTripDim(t);
+      fillTripCard(t);
+      tripCard.hidden = true;
+      tripRoute.clear();
+      // Camera first, then the legs one by one, then the card.
+      map.once("moveend", function () {
+        if (tripShown !== id) return;
+        tripRoute.draw(t, !DT.reducedMotion, function () { if (tripShown === id) tripCard.hidden = false; });
+      });
+      fitTrip(true);
+    });
+  }
+
+  function exitTrip(animate) {
+    tripRequest = null;
+    if (!tripShown) return;
+    tripShown = null;
+    tripRoute.clear();
+    tripCard.hidden = true;
+    backBtn.hidden = !exploring;
+    if (popup) popup.remove();
+    setTripDim(null);
+    var camera = tripCamera;
+    tripCamera = null;
+    if (animate && !DT.reducedMotion) map.easeTo(Object.assign({ duration: 1000 }, camera));
+    else map.jumpTo(camera);
   }
 
   // ---------------------------------------------------------------- rotation
@@ -441,6 +559,7 @@
     if (DT.reducedMotion) {
       map.setProjection(projectionSpec(name));
       if (exploring) fitExplore(false);
+      if (tripShown) fitTrip(false);
       return;
     }
 
@@ -450,6 +569,7 @@
       if (projection !== name) return; // toggled again mid-fade
       map.setProjection(projectionSpec(name));
       if (exploring) fitExplore(false);
+      if (tripShown) fitTrip(false);
       requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.remove("is-fading"); }); });
     }, FADE_MS);
   }
@@ -488,6 +608,25 @@
     toggleBtn = DT.$("#projection-toggle");
     backBtn = DT.$("#explore-back");
     notice = DT.$("#map-notice");
+    tripsBtn = DT.$("#trips-toggle");
+    tripsPanel = DT.$("#trips-panel");
+    tripsList = DT.$("#trips-list");
+    tripCard = DT.$("#trip-card");
+    tripsBtn.hidden = !DT.data.trips.length;
+    tripsBtn.addEventListener("click", function () {
+      if (tripsPanel.hidden) openTripsPanel(); else closeTripsPanel();
+    });
+    DT.$("#trips-close").addEventListener("click", closeTripsPanel);
+    tripsList.addEventListener("click", function (e) {
+      // The trip already shown: the hash would not change, so replay it directly.
+      var a = e.target.closest("a");
+      if (a && a.getAttribute("href") === location.hash) {
+        e.preventDefault();
+        var id = tripShown;
+        tripShown = null;
+        enterTrip(id);
+      }
+    });
     tooltipBtn.addEventListener("click", function () {
       location.hash = "#/globe?explore=" + encodeURIComponent(tooltipBtn.dataset.unit);
     });
@@ -509,6 +648,13 @@
       touchPitch: false,
       attributionControl: false,
       fadeDuration: 0,
+    });
+    tripRoute = new DT.TripRoute(map, {
+      before: "pins",
+      onStopClick: function (s) {
+        var p = !s.missing && DT.placeById(s.place_id);
+        if (p) openPopup(p);
+      },
     });
     map.touchZoomRotate.disableRotation();
     map.keyboard.disableRotation();
@@ -598,17 +744,24 @@
       visible = true;
       if (!map) init(container);
       else map.resize();
+      // Explore and Trips are mutually exclusive: the hash decides which one is on.
       if (params.explore && isVisitedUnit(params.explore)) {
+        exitTrip(false);
         enterExplore(params.explore);
+      } else if (params.trip && DT.tripById(params.trip)) {
+        exitExplore(false);
+        if (params.trip !== tripShown) enterTrip(params.trip);
       } else {
         exitExplore(!params.place);
+        exitTrip(!params.place);
         if (params.place) flyToPlace(params.place);
       }
     },
     hide: function () {
       visible = false;
       if (tooltip) hideTooltip();
-      if (map) exitExplore(false);
+      if (tripsPanel) closeTripsPanel();
+      if (map) { exitExplore(false); exitTrip(false); }
     },
   };
 })();

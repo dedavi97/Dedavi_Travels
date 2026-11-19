@@ -51,7 +51,21 @@
 
       <section class="view view-globe" id="view-globe" hidden>
         <div class="map" id="map"></div>
-        <button class="map-toggle" type="button" id="projection-toggle"></button>
+        <div class="map-actions">
+          <button class="map-toggle" type="button" id="trips-toggle" aria-expanded="false" aria-controls="trips-panel" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 17.2c5-1 2-6.4 6.6-8.6"/></svg>
+            <span>Trips</span>
+          </button>
+          <button class="map-toggle" type="button" id="projection-toggle"></button>
+        </div>
+        <aside class="trips-panel" id="trips-panel" aria-label="Trips" hidden>
+          <div class="trips-panel-head">
+            <h2>Trips</h2>
+            <button class="trip-card-close" type="button" id="trips-close" aria-label="Close the list">×</button>
+          </div>
+          <ul class="trips-list" id="trips-list"></ul>
+        </aside>
+        <div class="trip-card" id="trip-card" role="region" aria-label="Trip" hidden></div>
         <button class="explore-back" type="button" id="explore-back" hidden><span aria-hidden="true">←</span> World</button>
         <div class="map-tooltip" id="map-tooltip" hidden>
           <span id="map-tooltip-name"></span>
@@ -61,6 +75,7 @@
       </section>
       <section class="view view-scroll" id="view-stats" hidden></section>
       <section class="view view-scroll" id="view-about" hidden></section>
+      <section class="view view-scroll" id="view-trips-editor" hidden></section>
     </main>
 
     <footer class="footer">
@@ -73,6 +88,7 @@
   <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
   <script src="assets/js/version.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/trips.js"></script>
   <script src="assets/js/globe.js"></script>
   <script src="assets/js/stats.js"></script>
   <script src="assets/js/about.js"></script>

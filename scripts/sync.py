@@ -73,6 +73,7 @@ ADM1_TOLERANCE = 0.02       # degrees: largest simplification of the area files
 ADM1_MIN_ISLAND = 0.002      # sq. degrees: drop islands smaller than this...
 ADM1_MIN_ISLAND_FRAC = 0.01  # ...and than this fraction of their area's main part
 ADM1_DECIMALS = 4
+TRIP_RELINK_KM = 2            # a trip stop whose pin disappeared moves to a pin this close
 FIT_MIN_PART = 0.002         # sq. degrees: smaller country parts are ignored by the camera fit
 
 ITALY_REGIONS_EN = {
@@ -106,6 +107,7 @@ COUNTRY_CACHE_FILE = DATA / "country_cache.json"
 OVERRIDES_FILE = DATA / "name_overrides.json"
 LOCATION_OVERRIDES_FILE = DATA / "location_overrides.json"
 REPORT_FILE = DATA / "name_report.md"
+TRIPS_FILE = DATA / "itineraries.json"
 ADM1_DIR = DATA / "geo" / "adm1"
 
 
@@ -594,7 +596,64 @@ def write_area_files(places, locator):
         print(f"  Wrote {path.name}: {len(areas)} areas, {len(text.encode('utf-8')) / 1000:.0f} KB")
 
 
-def write_report(report, notes):
+# ---------------------------------------------------------------- trips
+
+STOP_FIELDS = ("name", "original_name", "lat", "lon", "country", "country_iso2")
+
+
+def relink_trips(places):
+    """Keep data/itineraries.json (written by the trips editor) pointing at existing pins.
+
+    A stop whose place_id is gone (pin renamed or moved) is moved to the nearest pin
+    within TRIP_RELINK_KM, preferring one with the same name; otherwise it keeps its
+    stored name and coordinates and gets "missing": true. Stops that still match a pin
+    get its current name and country. `revision` is never touched (it belongs to the
+    editor). Returns report lines.
+    """
+    try:
+        data = read_json(TRIPS_FILE, None)
+    except ValueError as e:
+        return [f"- ⚠️ data/itineraries.json is not valid JSON, trips were not checked: {e}"]
+    if data is None:
+        return []
+    if not isinstance(data, dict) or not isinstance(data.get("trips"), list):
+        return ["- ⚠️ data/itineraries.json has no trip list, trips were not checked."]
+    lines = []
+    for trip in data["trips"]:
+        for stop in trip.get("stops") or []:
+            if isinstance(stop, dict):
+                line = relink_stop(stop, places)
+                if line:
+                    lines.append(f"- **{trip.get('name', '?')}**: {line}")
+    if write_if_changed(TRIPS_FILE, dump_json(data)):
+        print("Updated data/itineraries.json (trip stops re-linked).")
+    return lines or [f"All stops of the {len(data['trips'])} trips match a pin."]
+
+
+def relink_stop(stop, places):
+    """Update one stop in place. Returns a report line, or None if it still matches its pin."""
+    line = None
+    place = next((p for p in places if p["id"] == stop.get("place_id")), None)
+    lat, lon = stop.get("lat"), stop.get("lon")
+    if place is None and isinstance(lat, (int, float)) and isinstance(lon, (int, float)):
+        names = {stop.get("name"), stop.get("original_name")} - {None}
+        near = [(haversine_km(lat, lon, p["lat"], p["lon"]), p) for p in places]
+        near = sorted(((d, p) for d, p in near if d <= TRIP_RELINK_KM),
+                      key=lambda x: (not ({x[1]["name"], x[1]["original_name"]} & names), x[0]))
+        if near:
+            place = near[0][1]
+            line = f"{stop.get('name', '?')} re-linked to {place['name']} ({near[0][0]:.2f} km away)"
+            stop["place_id"] = place["id"]
+    if place is None:
+        stop["missing"] = True
+        return f"{stop.get('name', '?')}: ⚠️ pin not found, the stop keeps its stored position (missing)"
+    stop.pop("missing", None)
+    for k in STOP_FIELDS:
+        stop[k] = place[k]
+    return line
+
+
+def write_report(report, notes, trip_lines=()):
     fallbacks = sum(1 for _, _, m in report if m.startswith("fallback"))
     lines = [
         "# Name report",
@@ -612,6 +671,8 @@ def write_report(report, notes):
         lines.append(f"| {orig} | {en} | {method}{flag} |")
     lines += ["", "## Location notes", ""]
     lines += notes or ["All places fell inside a country polygon."]
+    if trip_lines:
+        lines += ["", "## Trips", ""] + list(trip_lines)
     write_if_changed(REPORT_FILE, "\n".join(lines) + "\n")
 
 
@@ -640,7 +701,7 @@ def main():
         print(f"Read {len(points)} places from {source}.")
 
         places, report, notes, locator = build(points)
-        write_report(report, notes)
+        write_report(report, notes, relink_trips(places))
         write_area_files(places, locator)
         if write_if_changed(PLACES_FILE, dump_json({"places": places})):
             status["last_data_change"] = status["last_check"]

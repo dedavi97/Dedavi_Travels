@@ -26,6 +26,9 @@
         "New pins appear here on their own: there is nothing to update by hand.</p>" +
         "<p>On the globe, click or tap a country I have visited and press Explore to see its provinces, " +
         "states or counties: the ones where I have been are highlighted.</p>" +
+        "<p>Some of my journeys are also recorded as trips: press Trips on the globe to see each one drawn stop by stop, " +
+        "with the transport used for every leg and a few numbers (distance, countries, a rough CO₂ estimate). " +
+        "The lines are straight between stops, not the real roads or flight paths.</p>" +
 
         "<h2>Who made it</h2>" +
         '<p>Davide — <a href="https://github.com/dedavi97" target="_blank" rel="noopener">github.com/dedavi97</a></p>' +

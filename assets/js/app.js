@@ -1,15 +1,16 @@
-// Core: data loading, hash router (#/globe, #/stats, #/about) and shared helpers.
-// Views (globe.js, stats.js, about.js) register themselves on DT.views.
+// Core: data loading, hash router (#/globe, #/stats, #/about, hidden #/trips-editor)
+// and shared helpers. Views (globe.js, stats.js, about.js, trips.js) register on DT.views.
 
 var DT = (function () {
   "use strict";
 
-  var ROUTES = ["globe", "stats", "about"];
+  var ROUTES = ["globe", "stats", "about", "trips-editor"];
   var DEFAULT_ROUTE = "globe";
 
   var DT = {
     views: {},
-    data: null, // { places: [...], status: {...} }
+    data: null, // { places: [...], status: {...}, trips: [...] }
+    HOME: { name: "Turin", lat: 45.0703, lon: 7.6869 },
     reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   };
 
@@ -54,6 +55,7 @@ var DT = (function () {
   DT.store = {
     get: function (key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
     set: function (key, value) { try { window.localStorage.setItem(key, value); } catch (e) { /* ignore */ } },
+    remove: function (key) { try { window.localStorage.removeItem(key); } catch (e) { /* ignore */ } },
   };
 
   DT.placeById = function (id) {
@@ -78,8 +80,10 @@ var DT = (function () {
     return Promise.all([
       fetchJson("data/places.json"),
       fetchJson("data/sync_status.json").catch(function () { return {}; }),
+      // Optional: without it (or if it is broken) the site simply has no trips.
+      fetchJson("data/itineraries.json").catch(function () { return null; }),
     ]).then(function (res) {
-      DT.data = { places: res[0].places || [], status: res[1] || {} };
+      DT.data = { places: res[0].places || [], status: res[1] || {}, trips: DT.validTrips(res[2]) };
       showState(null);
       route();
     }).catch(function (err) {
@@ -118,6 +122,7 @@ var DT = (function () {
     ROUTES.forEach(function (name) {
       DT.$("#view-" + name).hidden = name !== r.name;
       var tab = DT.$('.tab[data-route="' + name + '"]');
+      if (!tab) return; // hidden route
       if (name === r.name) tab.setAttribute("aria-current", "page");
       else tab.removeAttribute("aria-current");
     });

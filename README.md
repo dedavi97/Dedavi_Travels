@@ -4,7 +4,8 @@ Interactive globe of every place I've visited: pins auto-synced from Google My M
 
 - **Globe**: a dark globe (or flat map) with a pin for every place. Countries and territories I have visited are coloured.
 - **Explore**: click or tap a visited country, then press **Explore**: the map zooms in and shows its provinces, states or counties, with the ones I have been to highlighted. **← World** (or Esc) goes back.
-- **Stats**: places, countries, territories, continents, share of the 195 UN states, Italian regions, US states, top countries, extreme points and the full list of places.
+- **Trips**: the **Trips** button on the globe lists my journeys. Pick one and its route is drawn stop by stop (straight lines; train, car, plane, ferry and bus each have their own line style), then a card shows the distance, the countries and the longest leg.
+- **Stats**: places, countries, territories, continents, share of the 195 UN states, Italian regions, US states, top countries, extreme points and the full list of places. With trips: total distance, distance by transport, records, trips per year and a rough CO₂ estimate.
 - **About**: what the site is, when the data was last checked, credits.
 
 The site is a plain web page hosted for free on GitHub Pages. It has no server, no database and no accounts.
@@ -41,6 +42,21 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 - **Fix a wrong English name**: open `data/name_overrides.json` and add a line like `"Original name": "English name"` (the file `data/name_report.md` lists how every name was found).
 - **Pins right on a border** (Gorizia, Schengen...) are checked automatically with OpenStreetMap, which has precise borders. If one is still wrong, add it to `data/location_overrides.json` with the 3-letter country code used by Natural Earth, e.g. `"Gorizia": "ITA"`.
 
+## Trips: how to add or change them
+
+Trips are edited on a hidden page of the site: **`https://dedavi97.github.io/Dedavi_Travels/#/trips-editor`** (not linked anywhere; it can't change the site by itself, so it is safe to leave it public). It works best on a computer.
+
+1. Open the page. At the top it says **Published revision N**: the version of the trips that is on the site now.
+2. **New trip**: type a name (and the year, if you want). Add the stops in order by clicking pins on the map or by searching a place by name; the same place can be added again (round trips). Under each stop choose the transport to the next one (🚆 🚗 ✈️ ⛴️ 🚌). Drag the stops or use ↑ ↓ to change the order. The preview below the map shows the route and the numbers.
+3. Your work is kept in this browser as a draft, even if you close the page.
+4. Press **Save file…**: a summary shows what changed (added, modified, deleted trips). Confirm, and save the file as **`itineraries.json`**. The name must be exactly that, not `itineraries (1).json`: if the browser adds a number, rename the file.
+5. Put it on the site: open the repository on GitHub → folder **`data`** → **Add file** → **Upload files** → drop `itineraries.json` → **Commit changes**.
+6. After about 1–2 minutes, reopen the editor: **Published revision** should have gone up by one. The draft is then cleared automatically.
+
+If you edited the trips on another computer in the meantime, the editor notices it when you open it and offers to **Merge** (keeps your changes and adds the other ones; recommended) or **Discard draft**.
+
+If you later rename or move a pin in My Maps, the automatic update re-links the trip stops to it (if it is within 2 km). A stop whose pin was deleted stays on the trip, drawn in grey, and is listed in `data/name_report.md` under "Trips".
+
 ## Try the site on your computer
 
 Double-click **`run.bat`**. It starts a small local web server and opens the site at http://localhost:8000.
@@ -59,7 +75,8 @@ This needs Python installed (https://www.python.org/downloads/).
 | `data/name_overrides.json` | Manual name fixes |
 | `data/country_cache.json` | Country of each pin according to OpenStreetMap (never looked up again) |
 | `data/location_overrides.json` | Manual country fixes for border pins (rarely needed) |
-| `data/name_report.md` | How each name was found, plus location notes |
+| `data/name_report.md` | How each name was found, plus location notes and trip checks |
+| `data/itineraries.json` | The trips, saved from the trips editor and uploaded by hand (missing until the first upload) |
 | `data/geo/countries.geojson` | Simplified world borders used by the map |
 | `data/geo/subdivisions.geojson` | Faint internal borders (regions, states...) shown on the map |
 | `data/geo/water.geojson` | Main lakes and rivers shown on the map |
