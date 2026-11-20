@@ -101,29 +101,37 @@
     return '<a class="trip-row" href="' + DT.tripLink(t) + '"><span class="trip-row-name">' + DT.escape(t.name) + "</span>" +
       '<span class="trip-row-year">' + (t.year != null ? DT.escape(t.year) : "") + "</span>" +
       '<span class="trip-row-modes">' + DT.modeIcons(t) + "</span>" +
-      '<span class="trip-row-km">' + DT.formatNumber(DT.tripStats(t).km) + " km</span></a>";
+      '<span class="trip-row-km">' + DT.formatNumber(DT.tripStats(t).onSite) + " km</span></a>";
   }
 
   function tripsSection(trips) {
     var rows = trips.map(function (t) { return { trip: t, stats: DT.tripStats(t) }; });
-    var totalKm = 0, byMode = {}, legsByMode = {}, years = {};
+    // Distance by transport and CO2 use every km; trip sizes and records use the km on
+    // the trips only, so the flights to get there don't make far trips look bigger.
+    var totalKm = 0, onSiteKm = 0, byMode = {}, onSiteByMode = {}, onSiteLegsByMode = {}, legsByMode = {}, years = {};
     rows.forEach(function (r) {
       totalKm += r.stats.km;
+      onSiteKm += r.stats.onSite;
       Object.keys(r.stats.byMode).forEach(function (m) { byMode[m] = (byMode[m] || 0) + r.stats.byMode[m]; });
-      r.trip.legs.forEach(function (l) { legsByMode[l.mode] = (legsByMode[l.mode] || 0) + 1; });
+      Object.keys(r.stats.onSiteByMode).forEach(function (m) { onSiteByMode[m] = (onSiteByMode[m] || 0) + r.stats.onSiteByMode[m]; });
+      r.trip.legs.forEach(function (l) {
+        legsByMode[l.mode] = (legsByMode[l.mode] || 0) + 1;
+        if (!l.transfer) onSiteLegsByMode[l.mode] = (onSiteLegsByMode[l.mode] || 0) + 1;
+      });
       if (r.trip.year != null) {
         var y = years[r.trip.year] = years[r.trip.year] || { year: r.trip.year, trips: 0, km: 0 };
         y.trips++;
-        y.km += r.stats.km;
+        y.km += r.stats.onSite;
       }
     });
     var modes = DT.MODE_ORDER.filter(function (m) { return byMode[m] != null; });
-    var longestTrip = best(rows, function (r) { return r.stats.km; });
+    var onSiteModes = DT.MODE_ORDER.filter(function (m) { return onSiteByMode[m] != null; });
+    var longestTrip = best(rows, function (r) { return r.stats.onSite; });
     var mostCountries = best(rows, function (r) { return r.stats.countries.length; });
     var longestLeg = best(rows, function (r) { return r.stats.longest.km; }).stats.longest;
     var longestLegTrip = best(rows, function (r) { return r.stats.longest.km; }).trip;
-    var topKm = best(modes, function (m) { return byMode[m]; });
-    var topLegs = best(modes, function (m) { return legsByMode[m]; });
+    var topKm = onSiteModes.length ? best(onSiteModes, function (m) { return onSiteByMode[m]; }) : null;
+    var topLegs = onSiteModes.length ? best(onSiteModes, function (m) { return onSiteLegsByMode[m]; }) : null;
 
     var inTrip = {};
     trips.forEach(function (t) { t.stops.forEach(function (s) { if (!s.missing) inTrip[s.place_id] = true; }); });
@@ -144,14 +152,15 @@
     return "<h2>Trips</h2>" +
       '<div class="cards">' +
         card(trips.length, trips.length === 1 ? "Trip" : "Trips") +
-        card(DT.formatNumber(totalKm), "km in total") +
-        card((totalKm / EARTH_KM).toFixed(2), "times around the Earth") +
+        card(DT.formatNumber(onSiteKm), "km on the trips") +
+        card(DT.formatNumber(totalKm - onSiteKm), "km getting there and back") +
+        card((totalKm / EARTH_KM).toFixed(2), "times around the Earth, all km") +
         percentCard(Math.min(100, (totalKm / MOON_KM) * 100), "of the way to the Moon") +
         percentCard(DT.data.places.length ? (covered / DT.data.places.length) * 100 : 0,
           "of the places are part of a trip (" + covered + ")") +
       "</div>" +
 
-      '<h3 class="sub">Distance by transport</h3>' +
+      '<h3 class="sub">Distance by transport (all km)</h3>' +
       '<div class="panel pad">' +
         '<div class="share-bar" aria-hidden="true">' + modes.map(function (m) {
           return '<span class="share-' + m + '" style="width:' + share(byMode[m]).toFixed(2) + '%"></span>';
@@ -163,15 +172,15 @@
 
       '<h3 class="sub">Records</h3>' +
       '<div class="facts">' +
-        tripFact("Longest trip", longestTrip.trip, DT.formatNumber(longestTrip.stats.km) + " km") +
+        tripFact("Longest trip", longestTrip.trip, DT.formatNumber(longestTrip.stats.onSite) + " km on the trip") +
         tripFact("Most countries", mostCountries.trip, mostCountries.stats.countries.length + (mostCountries.stats.countries.length === 1 ? " country" : " countries")) +
         tripFact("Longest single leg", longestLegTrip, DT.escape(longestLeg.from.name) + " → " + DT.escape(longestLeg.to.name) +
           " · " + modeName(longestLeg.mode) + " · " + DT.formatNumber(longestLeg.km) + " km") +
-        plainFact("Most used, by distance", modeName(topKm), DT.formatNumber(byMode[topKm]) + " km") +
-        plainFact("Most used, by legs", modeName(topLegs), legs(legsByMode[topLegs])) +
+        (topKm ? plainFact("Most used on the trips, by distance", modeName(topKm), DT.formatNumber(onSiteByMode[topKm]) + " km") +
+          plainFact("Most used on the trips, by legs", modeName(topLegs), legs(onSiteLegsByMode[topLegs])) : "") +
       "</div>" +
 
-      (yearList.length ? '<h3 class="sub">By year</h3><div class="panel ranking">' + yearList.map(function (y) {
+      (yearList.length ? '<h3 class="sub">By year (km on the trips)</h3><div class="panel ranking">' + yearList.map(function (y) {
         return '<div class="rank-row year-row"><div class="rank-name"><span>' + DT.escape(y.year) + "</span></div>" +
           '<div class="rank-track"><div class="rank-fill" style="width:' + ((y.km / maxYearKm) * 100).toFixed(1) + '%"></div></div>' +
           '<div class="rank-count">' + y.trips + (y.trips === 1 ? " trip" : " trips") + " · " + DT.formatNumber(y.km) + " km</div></div>";

@@ -226,7 +226,7 @@
               (st ? ' <span class="ed-tag">' + st + "</span>" : "") +
               (errors.length ? ' <span class="ed-tag ed-tag-warn">incomplete</span>' : "") + "</span>" +
             '<span class="muted">' + (t.year != null ? esc(t.year) + " · " : "") + t.stops.length + " stops · " +
-              DT.formatNumber(DT.tripStats(t).km) + " km " + DT.modeIcons(t) + "</span>" +
+              DT.formatNumber(DT.tripStats(t).onSite) + " km " + DT.modeIcons(t) + "</span>" +
           "</button>" +
           '<button class="ed-icon" type="button" data-act="delete" aria-label="Delete ' + esc(t.name) + '" title="Delete">' + ICON_DELETE + '</button>' +
           "</li>";
@@ -303,7 +303,9 @@
           DT.MODE_ORDER.map(function (m) {
             return '<button type="button" class="ed-mode" data-mode="' + m + '" aria-pressed="' + (leg.mode === m) + '" title="' +
               DT.MODES[m].label + '">' + DT.MODES[m].icon + "</button>";
-          }).join("") + '</div><span class="muted">' + DT.formatNumber(km) + " km</span></li>";
+          }).join("") + '</div><span class="muted">' + DT.formatNumber(km) + " km</span>" +
+          '<button type="button" class="ed-transfer" data-act="transfer" aria-pressed="' + !!leg.transfer + '" title="' +
+            'Getting there or back (e.g. the flight from home): counted apart from the km on the trip">↔ there/back</button></li>';
       }
       html += '<li class="ed-stop" draggable="true" data-stop="' + i + '">' +
         '<span class="ed-grip" aria-hidden="true" title="Drag to reorder">⋮⋮</span>' +
@@ -329,7 +331,12 @@
     var t = editing();
     if (!t) return;
     t.stops.push(stopFromPlace(p));
-    if (t.stops.length > 1) t.legs.push({ mode: t.legs.length ? t.legs[t.legs.length - 1].mode : "train" });
+    var n = t.stops.length;
+    if (n > 1) {
+      var leg = { mode: t.legs.length ? t.legs[t.legs.length - 1].mode : "train" };
+      if (DT.isHomeLeg(t.stops[n - 2], t.stops[n - 1])) leg.transfer = true;
+      t.legs.push(leg);
+    }
     changed();
   }
 
@@ -441,7 +448,7 @@
     $("#ed-map-hint").textContent = mapHint();
     var t = editing(), box = $("#ed-preview");
     if (mapLoaded) {
-      if (t && t.stops.length) route.draw({ stops: t.stops, legs: t.legs.map(function (l) { return { mode: l.mode || "train" }; }) }, false);
+      if (t && t.stops.length) route.draw({ stops: t.stops, legs: t.legs.map(function (l) { return { mode: l.mode || "train", transfer: l.transfer }; }) }, false);
       else route.clear();
     }
     if (!t || t.stops.length < 2) {
@@ -592,8 +599,13 @@
       else if (act === "up") moveStop(+stop.dataset.stop, +stop.dataset.stop - 1);
       else if (act === "down") moveStop(+stop.dataset.stop, +stop.dataset.stop + 1);
       else if (act === "remove") removeStop(+stop.dataset.stop);
+      else if (act === "transfer") {
+        var leg = editing().legs[+btn.closest("[data-leg]").dataset.leg];
+        if (leg.transfer) delete leg.transfer; else leg.transfer = true;
+        changed();
+      }
       else if (btn.dataset.mode) {
-        editing().legs[+btn.closest("[data-leg]").dataset.leg] = { mode: btn.dataset.mode };
+        editing().legs[+btn.closest("[data-leg]").dataset.leg].mode = btn.dataset.mode;
         changed();
       } else if (btn.dataset.place) {
         addStop(DT.placeById(btn.dataset.place));

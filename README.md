@@ -4,7 +4,7 @@ Interactive globe of every place I've visited: pins auto-synced from Google My M
 
 - **Globe**: a dark globe (or flat map) with a pin for every place. Countries and territories I have visited are coloured.
 - **Explore**: click or tap a visited country, then press **Explore**: the map zooms in and shows its provinces, states or counties, with the ones I have been to highlighted. **← World** (or Esc) goes back.
-- **Trips**: the **Trips** button on the globe lists my journeys. Pick one and its route is drawn stop by stop (straight lines; train, car, plane, ferry and bus each have their own line style), then a card shows the distance, the countries and the longest leg.
+- **Trips**: the **Trips** button on the globe lists my journeys. Pick one and its route is drawn stop by stop (straight lines; train, car, plane, ferry and bus each have their own line style), then a card shows the km travelled on the trip (the km to get there and back are shown apart), the countries and the longest leg.
 - **Stats**: places, countries, territories, continents, share of the 195 UN states, Italian regions, US states, top countries, extreme points and the full list of places. With trips: total distance, distance by transport, records, trips per year and a rough CO₂ estimate.
 - **About**: what the site is, when the data was last checked, credits.
 
@@ -47,7 +47,7 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 Trips are edited on a hidden page of the site: **`https://dedavi97.github.io/Dedavi_Travels/#/trips-editor`** (not linked anywhere; it can't change the site by itself, so it is safe to leave it public). It works best on a computer.
 
 1. Open the page. At the top it says **Published revision N**: the version of the trips that is on the site now.
-2. **New trip**: type a name (and the year, if you want). Add the stops in order by clicking pins on the map or by searching a place by name; the same place can be added again (round trips). Under each stop choose the transport to the next one (🚆 🚗 ✈️ ⛴️ 🚌). Drag the stops or use ↑ ↓ to change the order. The preview below the map shows the route and the numbers.
+2. **New trip**: type a name (and the year, if you want). Add the stops in order by clicking pins on the map or by searching a place by name; the same place can be added again (round trips). Under each stop choose the transport to the next one (🚆 🚗 ✈️ ⛴️ 🚌). Press **↔ there/back** on the legs that only take you there and back (usually the flights from and to Turin; legs from or to Turin are marked automatically, you can change them): they are drawn fainter and counted apart, so a trip far away doesn't look "bigger" just because of the flight. Drag the stops or use ↑ ↓ to change the order. The preview below the map shows the route and the numbers.
 3. Your work is kept in this browser as a draft, even if you close the page.
 4. Press **Save file…**: a summary shows what changed (added, modified, deleted trips). Confirm, and save the file as **`itineraries.json`**. The name must be exactly that, not `itineraries (1).json`: if the browser adds a number, rename the file.
 5. Put it on the site: open the repository on GitHub → folder **`data`** → **Add file** → **Upload files** → drop `itineraries.json` → **Commit changes**.

@@ -425,7 +425,7 @@
         '<span class="trip-row-name">' + DT.escape(t.name) + "</span>" +
         '<span class="trip-row-year">' + (t.year != null ? DT.escape(t.year) : "") + "</span>" +
         '<span class="trip-row-modes">' + DT.modeIcons(t) + "</span>" +
-        '<span class="trip-row-km">' + DT.formatNumber(DT.tripStats(t).km) + " km</span></a></li>";
+        '<span class="trip-row-km">' + DT.formatNumber(DT.tripStats(t).onSite) + " km</span></a></li>";
     }).join("");
   }
 
@@ -451,7 +451,7 @@
   function fitTrip(animate) {
     var t = DT.tripById(tripShown);
     if (!t) return;
-    map.fitBounds(DT.tripBounds(t), {
+    map.fitBounds(DT.tripBounds(t, true), {
       padding: tripPadding(),
       maxZoom: TRIP_MAX_ZOOM,
       duration: animate && !DT.reducedMotion ? 1200 : 0,

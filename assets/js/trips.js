@@ -33,6 +33,8 @@
     bus: { color: "#f2b544", dash: [1.2, 1.2] },
   };
   var LINE_WIDTH = 2.6;
+  var TRANSFER_FADE = 0.4;  // "getting there / back" legs are drawn fainter
+  var HOME_RADIUS_KM = 30;  // a leg from or to within this distance of home is a transfer by default
 
   // ---------------------------------------------------------------- data
 
@@ -45,7 +47,7 @@
       return t && t.id && t.name && Array.isArray(t.stops) && t.stops.length >= 2 &&
         Array.isArray(t.legs) && t.legs.length === t.stops.length - 1 &&
         t.stops.every(function (s) { return s && isNum(s.lat) && isNum(s.lon); }) &&
-        t.legs.every(function (l) { return l && MODES[l.mode]; });
+        t.legs.every(function (l) { return l && MODES[l.mode] && (l.transfer == null || typeof l.transfer === "boolean"); });
     });
   };
 
@@ -79,14 +81,21 @@
 
   function stopKey(s) { return s.place_id || s.lat.toFixed(4) + "," + s.lon.toFixed(4); }
 
+  // Legs marked "transfer" (getting there and back, e.g. the flights from home) are
+  // counted apart: onSite / onSiteByMode are the km travelled on the trip itself,
+  // which is what the headline numbers and records use. km / byMode include everything.
   DT.tripStats = function (trip) {
-    var byMode = {}, legs = [], km = 0;
+    var byMode = {}, onSiteByMode = {}, legs = [], km = 0, onSite = 0;
     trip.legs.forEach(function (leg, i) {
       var a = trip.stops[i], b = trip.stops[i + 1];
       var d = DT.haversineKm(a.lat, a.lon, b.lat, b.lon);
-      legs.push({ from: a, to: b, mode: leg.mode, km: d });
+      legs.push({ from: a, to: b, mode: leg.mode, km: d, transfer: !!leg.transfer });
       byMode[leg.mode] = (byMode[leg.mode] || 0) + d;
       km += d;
+      if (!leg.transfer) {
+        onSiteByMode[leg.mode] = (onSiteByMode[leg.mode] || 0) + d;
+        onSite += d;
+      }
     });
     var countries = {}, places = {};
     trip.stops.forEach(function (s) {
@@ -99,16 +108,26 @@
       var d = DT.haversineKm(DT.HOME.lat, DT.HOME.lon, s.lat, s.lon);
       if (!farthest || d > farthest.km) farthest = { stop: s, km: d };
     });
-    var longest = legs.reduce(function (best, l) { return !best || l.km > best.km ? l : best; }, null);
+    var onSiteLegs = legs.filter(function (l) { return !l.transfer; });
+    var longest = (onSiteLegs.length ? onSiteLegs : legs).reduce(function (best, l) { return !best || l.km > best.km ? l : best; }, null);
     return {
       km: km,
+      onSite: onSite,
+      transfer: km - onSite,
       byMode: byMode,
+      onSiteByMode: onSiteByMode,
       legs: legs,
       longest: longest,
       stops: Object.keys(places).length,
       countries: Object.keys(countries).map(function (k) { return countries[k]; }),
       farthest: farthest,
     };
+  };
+
+  // Default for a new leg: leaving home or coming back home is getting there / back.
+  DT.isHomeLeg = function (a, b) {
+    return DT.haversineKm(DT.HOME.lat, DT.HOME.lon, a.lat, a.lon) <= HOME_RADIUS_KM ||
+      DT.haversineKm(DT.HOME.lat, DT.HOME.lon, b.lat, b.lon) <= HOME_RADIUS_KM;
   };
 
   // Stop positions with longitudes unwrapped so every leg goes the short way round.
@@ -126,8 +145,15 @@
     return out;
   }
 
-  DT.tripBounds = function (trip) {
+  // onSiteOnly: frame the stops of the trip itself, not home at the end of the transfers.
+  DT.tripBounds = function (trip, onSiteOnly) {
     var pts = unwrapped(trip.stops);
+    if (onSiteOnly) {
+      var keep = pts.filter(function (p, i) {
+        return (i > 0 && !trip.legs[i - 1].transfer) || (i < trip.legs.length && !trip.legs[i].transfer);
+      });
+      if (keep.length) pts = keep;
+    }
     var lons = pts.map(function (p) { return p[0]; }), lats = pts.map(function (p) { return p[1]; });
     return [[Math.min.apply(null, lons), Math.min.apply(null, lats)], [Math.max.apply(null, lons), Math.max.apply(null, lats)]];
   };
@@ -142,23 +168,31 @@
     }).join("");
   };
 
-  function legendSwatch(mode) {
+  function legendSwatch(mode, faded) {
     var l = LINE[mode], w = 2;
     var dash = l.dash ? ' stroke-dasharray="' + l.dash.map(function (d) { return Math.max(d * w, 0.1); }).join(" ") + '"' : "";
     return '<svg class="legend-line" viewBox="0 0 28 6" aria-hidden="true"><line x1="2" y1="3" x2="26" y2="3" stroke="' +
-      l.color + '" stroke-width="' + w + '" stroke-linecap="' + (mode === "plane" ? "round" : "butt") + '"' + dash + "/></svg>";
+      l.color + '" stroke-width="' + w + '" stroke-linecap="' + (mode === "plane" ? "round" : "butt") + '"' + dash +
+      ' opacity="' + ((l.opacity || 1) * (faded ? TRANSFER_FADE : 1)) + '"/></svg>';
   }
 
   // Card body with the per-trip stats.
   DT.tripCardHtml = function (trip) {
     var s = DT.tripStats(trip);
-    var modes = DT.MODE_ORDER.filter(function (m) { return s.byMode[m] != null; });
+    var modes = DT.MODE_ORDER.filter(function (m) { return s.onSiteByMode[m] != null; });
+    var transferModes = DT.MODE_ORDER.filter(function (m) {
+      return s.legs.some(function (l) { return l.transfer && l.mode === m; });
+    });
     var place = function (stop) { return DT.escape(stop.name); };
-    return '<div class="trip-card-km"><strong>' + DT.formatNumber(s.km) + "</strong> km</div>" +
+    return '<div class="trip-card-km"><strong>' + DT.formatNumber(s.onSite) + "</strong> km on the trip</div>" +
       '<ul class="trip-modes">' + modes.map(function (m) {
         return "<li>" + legendSwatch(m) + "<span>" + MODES[m].icon + " " + MODES[m].label + '</span><span class="muted">' +
-          DT.formatNumber(s.byMode[m]) + " km</span></li>";
-      }).join("") + "</ul>" +
+          DT.formatNumber(s.onSiteByMode[m]) + " km</span></li>";
+      }).join("") +
+      (transferModes.length ? '<li class="trip-transfer">' + legendSwatch(transferModes[0], true) + "<span>" +
+        transferModes.map(function (m) { return MODES[m].icon; }).join(" ") + " Getting there and back</span>" +
+        '<span class="muted">' + DT.formatNumber(s.transfer) + " km</span></li>" : "") +
+      "</ul>" +
       '<dl class="trip-facts">' +
         "<dt>Stops</dt><dd>" + s.stops + "</dd>" +
         "<dt>Countries</dt><dd>" + s.countries.length + "</dd>" +
@@ -187,9 +221,11 @@
     // Dark edge for contrast; not under the plane's dots, which would turn them into a dashed track.
     map.addLayer({ id: "trip-casing", type: "line", source: "trip-legs", filter: ["!=", ["get", "mode"], "plane"],
       layout: { "line-cap": "round", "line-join": "round" },
-      paint: { "line-color": "#0a0f1d", "line-opacity": 0.55, "line-width": LINE_WIDTH + 3 } }, before);
+      paint: { "line-color": "#0a0f1d", "line-opacity": ["case", ["get", "transfer"], 0.55 * TRANSFER_FADE, 0.55], "line-width": LINE_WIDTH + 3 } }, before);
     DT.MODE_ORDER.forEach(function (m) {
-      var paint = { "line-color": LINE[m].color, "line-width": LINE_WIDTH, "line-opacity": LINE[m].opacity || 1 };
+      var opacity = LINE[m].opacity || 1;
+      var paint = { "line-color": LINE[m].color, "line-width": LINE_WIDTH,
+        "line-opacity": ["case", ["get", "transfer"], opacity * TRANSFER_FADE, opacity] };
       if (LINE[m].dash) paint["line-dasharray"] = LINE[m].dash;
       map.addLayer({ id: "trip-line-" + m, type: "line", source: "trip-legs", filter: ["==", ["get", "mode"], m],
         layout: { "line-cap": m === "plane" ? "round" : "butt", "line-join": "round" }, paint: paint }, before);
@@ -244,14 +280,14 @@
       m.marker = new maplibregl.Marker({ element: el }).setLngLat(pts[m.first]);
     });
 
-    var legs = trip.legs.map(function (l, i) { return { mode: l.mode, a: pts[i], b: pts[i + 1] }; });
+    var legs = trip.legs.map(function (l, i) { return { mode: l.mode, transfer: !!l.transfer, a: pts[i], b: pts[i + 1] }; });
     function render(progressLegs) {
       var features = [];
       legs.forEach(function (l, i) {
         var f = Math.max(0, Math.min(1, progressLegs - i));
         if (f <= 0) return;
         var end = [l.a[0] + (l.b[0] - l.a[0]) * f, l.a[1] + (l.b[1] - l.a[1]) * f];
-        features.push({ type: "Feature", properties: { mode: l.mode }, geometry: { type: "LineString", coordinates: [l.a, end] } });
+        features.push({ type: "Feature", properties: { mode: l.mode, transfer: l.transfer }, geometry: { type: "LineString", coordinates: [l.a, end] } });
       });
       map.getSource("trip-legs").setData({ type: "FeatureCollection", features: features });
       self.markers.forEach(function (m) {
