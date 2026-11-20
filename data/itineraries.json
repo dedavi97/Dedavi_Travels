@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "revision": 2,
-  "updated": "2026-11-19T15:08:01Z",
+  "revision": 3,
+  "updated": "2026-11-20T16:35:19Z",
   "trips": [
     {
       "id": "polonia-2026-zqzk",
@@ -92,7 +92,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "train"
@@ -113,7 +114,8 @@
           "mode": "train"
         },
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -341,7 +343,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "train"
@@ -407,7 +410,8 @@
           "mode": "ferry"
         },
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -518,7 +522,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "car"
@@ -545,7 +550,8 @@
           "mode": "bus"
         },
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -674,7 +680,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "bus"
@@ -707,7 +714,8 @@
           "mode": "bus"
         },
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -780,6 +788,24 @@
           "country_iso2": "ME"
         },
         {
+          "place_id": "973d36846d",
+          "name": "Ostrog",
+          "original_name": "Ostrog",
+          "lat": 42.66864,
+          "lon": 19.02978,
+          "country": "Montenegro",
+          "country_iso2": "ME"
+        },
+        {
+          "place_id": "a28228e343",
+          "name": "Podgorica",
+          "original_name": "Podgorica",
+          "lat": 42.43042,
+          "lon": 19.25936,
+          "country": "Montenegro",
+          "country_iso2": "ME"
+        },
+        {
           "place_id": "bf633661df",
           "name": "Cetinje",
           "original_name": "Cettigne",
@@ -827,7 +853,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "car"
@@ -857,7 +884,14 @@
           "mode": "car"
         },
         {
-          "mode": "plane"
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -950,7 +984,8 @@
       ],
       "legs": [
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         },
         {
           "mode": "car"
@@ -971,7 +1006,8 @@
           "mode": "car"
         },
         {
-          "mode": "plane"
+          "mode": "plane",
+          "transfer": true
         }
       ]
     },
@@ -1105,6 +1141,1174 @@
         {
           "mode": "car"
         },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "sicily-3rvq",
+      "name": "Sicily",
+      "year": 2023,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "390761be4c",
+          "name": "Catania",
+          "original_name": "Catania",
+          "lat": 37.50788,
+          "lon": 15.083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "2bfa2f7788",
+          "name": "Taormina",
+          "original_name": "Taormina",
+          "lat": 37.85455,
+          "lon": 15.28894,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "390761be4c",
+          "name": "Catania",
+          "original_name": "Catania",
+          "lat": 37.50788,
+          "lon": 15.083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "a26d5d5428",
+          "name": "Aci Trezza",
+          "original_name": "Aci Trezza",
+          "lat": 37.56156,
+          "lon": 15.15749,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "390761be4c",
+          "name": "Catania",
+          "original_name": "Catania",
+          "lat": 37.50788,
+          "lon": 15.083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "3ad1c52e2a",
+          "name": "Agrigento",
+          "original_name": "Agrigento",
+          "lat": 37.30884,
+          "lon": 13.58578,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "e8aa0e220a",
+          "name": "Enna",
+          "original_name": "Enna",
+          "lat": 37.56916,
+          "lon": 14.27489,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "647027a800",
+          "name": "Marzamemi",
+          "original_name": "Marzamemi",
+          "lat": 36.74205,
+          "lon": 15.11752,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "230c35c218",
+          "name": "Syracuse",
+          "original_name": "Siracusa",
+          "lat": 37.0754,
+          "lon": 15.28674,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "34046146c8",
+          "name": "Fontane Bianche",
+          "original_name": "Fontane Bianche",
+          "lat": 36.965,
+          "lon": 15.2149,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "230c35c218",
+          "name": "Syracuse",
+          "original_name": "Siracusa",
+          "lat": 37.0754,
+          "lon": 15.28674,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "390761be4c",
+          "name": "Catania",
+          "original_name": "Catania",
+          "lat": 37.50788,
+          "lon": 15.083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "plane",
+          "transfer": true
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "plane",
+          "transfer": true
+        }
+      ]
+    },
+    {
+      "id": "england-wne5",
+      "name": "England",
+      "year": 2017,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "ec2cb72f7d",
+          "name": "Camerata Cornello",
+          "original_name": "Camerata Cornello",
+          "lat": 45.89874,
+          "lon": 9.65779,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "39feb534c7",
+          "name": "Bristol",
+          "original_name": "Bristol",
+          "lat": 51.45451,
+          "lon": -2.58791,
+          "country": "United Kingdom",
+          "country_iso2": "GB"
+        },
+        {
+          "place_id": "a2664fabdc",
+          "name": "Bath",
+          "original_name": "Bath",
+          "lat": 51.3781,
+          "lon": -2.35968,
+          "country": "United Kingdom",
+          "country_iso2": "GB"
+        },
+        {
+          "place_id": "39feb534c7",
+          "name": "Bristol",
+          "original_name": "Bristol",
+          "lat": 51.45451,
+          "lon": -2.58791,
+          "country": "United Kingdom",
+          "country_iso2": "GB"
+        },
+        {
+          "place_id": "2d8c0d261f",
+          "name": "London",
+          "original_name": "Londra",
+          "lat": 51.50722,
+          "lon": -0.12759,
+          "country": "United Kingdom",
+          "country_iso2": "GB"
+        },
+        {
+          "place_id": "ec2cb72f7d",
+          "name": "Camerata Cornello",
+          "original_name": "Camerata Cornello",
+          "lat": 45.89874,
+          "lon": 9.65779,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "plane",
+          "transfer": true
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "bus"
+        },
+        {
+          "mode": "train"
+        },
+        {
+          "mode": "plane",
+          "transfer": true
+        },
+        {
+          "mode": "train"
+        }
+      ]
+    },
+    {
+      "id": "western-europe-a5r1",
+      "name": "Western Europe",
+      "year": 2016,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "5e1dd39969",
+          "name": "Innsbruck",
+          "original_name": "Innsbruck",
+          "lat": 47.26753,
+          "lon": 11.39103,
+          "country": "Austria",
+          "country_iso2": "AT"
+        },
+        {
+          "place_id": "e208cb8717",
+          "name": "Berlin",
+          "original_name": "Berlino",
+          "lat": 52.52001,
+          "lon": 13.40495,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "903c91b56b",
+          "name": "Hamburg",
+          "original_name": "Amburgo",
+          "lat": 53.54883,
+          "lon": 9.98717,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "a8ad2fa04c",
+          "name": "Lübeck",
+          "original_name": "Lubecca",
+          "lat": 53.86547,
+          "lon": 10.68656,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "903c91b56b",
+          "name": "Hamburg",
+          "original_name": "Amburgo",
+          "lat": 53.54883,
+          "lon": 9.98717,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "b6f235727d",
+          "name": "Antwerp",
+          "original_name": "Anversa",
+          "lat": 51.21993,
+          "lon": 4.41499,
+          "country": "Belgium",
+          "country_iso2": "BE"
+        },
+        {
+          "place_id": "8112c4e28e",
+          "name": "Bruges",
+          "original_name": "Bruges",
+          "lat": 51.20845,
+          "lon": 3.22506,
+          "country": "Belgium",
+          "country_iso2": "BE"
+        },
+        {
+          "place_id": "b6f235727d",
+          "name": "Antwerp",
+          "original_name": "Anversa",
+          "lat": 51.21993,
+          "lon": 4.41499,
+          "country": "Belgium",
+          "country_iso2": "BE"
+        },
+        {
+          "place_id": "f37877d996",
+          "name": "Strasbourg",
+          "original_name": "Strasburgo",
+          "lat": 48.57341,
+          "lon": 7.75211,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "central-europe-l26j",
+      "name": "Central Europe",
+      "year": 2015,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "58563e7ef7",
+          "name": "Vienna",
+          "original_name": "Vienna",
+          "lat": 48.20807,
+          "lon": 16.37131,
+          "country": "Austria",
+          "country_iso2": "AT"
+        },
+        {
+          "place_id": "85e74ea93b",
+          "name": "Budapest",
+          "original_name": "Budapest",
+          "lat": 47.49791,
+          "lon": 19.04023,
+          "country": "Hungary",
+          "country_iso2": "HU"
+        },
+        {
+          "place_id": "e7c3e1d46b",
+          "name": "Kraków",
+          "original_name": "Cracovia",
+          "lat": 50.06465,
+          "lon": 19.94498,
+          "country": "Poland",
+          "country_iso2": "PL"
+        },
+        {
+          "place_id": "4494261806",
+          "name": "Prague",
+          "original_name": "Praga",
+          "lat": 50.07554,
+          "lon": 14.4378,
+          "country": "Czechia",
+          "country_iso2": "CZ"
+        },
+        {
+          "place_id": "3cd6ae0113",
+          "name": "Munich",
+          "original_name": "Monaco di Baviera",
+          "lat": 48.13513,
+          "lon": 11.58198,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "iberia-9bci",
+      "name": "Iberia",
+      "year": 2014,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "f5060198ec",
+          "name": "Girona",
+          "original_name": "Girona",
+          "lat": 41.9794,
+          "lon": 2.82143,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "628f9c553d",
+          "name": "Barcelona",
+          "original_name": "Barcellona",
+          "lat": 41.3874,
+          "lon": 2.16857,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "00cfe1c500",
+          "name": "Málaga",
+          "original_name": "Málaga",
+          "lat": 36.71782,
+          "lon": -4.42556,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "f3ad985584",
+          "name": "Granada",
+          "original_name": "Granada",
+          "lat": 37.18246,
+          "lon": -3.60117,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "00cfe1c500",
+          "name": "Málaga",
+          "original_name": "Málaga",
+          "lat": 36.71782,
+          "lon": -4.42556,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "a4de684851",
+          "name": "Marbella",
+          "original_name": "Marbella",
+          "lat": 36.51028,
+          "lon": -4.88526,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "34f62653cc",
+          "name": "Gibraltar",
+          "original_name": "Gibilterra",
+          "lat": 36.14075,
+          "lon": -5.35358,
+          "country": "United Kingdom",
+          "country_iso2": "GB"
+        },
+        {
+          "place_id": "00cfe1c500",
+          "name": "Málaga",
+          "original_name": "Málaga",
+          "lat": 36.71782,
+          "lon": -4.42556,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "82980123f8",
+          "name": "Lisbon",
+          "original_name": "Lisbona",
+          "lat": 38.72225,
+          "lon": -9.13934,
+          "country": "Portugal",
+          "country_iso2": "PT"
+        },
+        {
+          "place_id": "7eab3e029c",
+          "name": "Madrid",
+          "original_name": "Madrid",
+          "lat": 40.41673,
+          "lon": -3.70329,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "8f9fb9805e",
+          "name": "Toledo",
+          "original_name": "Toledo",
+          "lat": 39.86283,
+          "lon": -4.02732,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "7eab3e029c",
+          "name": "Madrid",
+          "original_name": "Madrid",
+          "lat": 40.41673,
+          "lon": -3.70329,
+          "country": "Spain",
+          "country_iso2": "ES"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "western-europe-lkb0",
+      "name": "Western Europe",
+      "year": 2013,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "b42fa8247b",
+          "name": "Annecy",
+          "original_name": "Annecy",
+          "lat": 45.9059,
+          "lon": 6.12591,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "2069dd6997",
+          "name": "Aix-les-Bains",
+          "original_name": "Aix-les-Bains",
+          "lat": 45.69234,
+          "lon": 5.909,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "c05fefb92b",
+          "name": "Chambéry",
+          "original_name": "Chambéry",
+          "lat": 45.5646,
+          "lon": 5.91778,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "b42fa8247b",
+          "name": "Annecy",
+          "original_name": "Annecy",
+          "lat": 45.9059,
+          "lon": 6.12591,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "a778661b92",
+          "name": "Paris",
+          "original_name": "Parigi",
+          "lat": 48.85755,
+          "lon": 2.35138,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "dfbab7d265",
+          "name": "Lille",
+          "original_name": "Lilla",
+          "lat": 50.62438,
+          "lon": 3.06786,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "eb48ba4a05",
+          "name": "Brussels",
+          "original_name": "Bruxelles",
+          "lat": 50.8477,
+          "lon": 4.3572,
+          "country": "Belgium",
+          "country_iso2": "BE"
+        },
+        {
+          "place_id": "bb6f621383",
+          "name": "Amsterdam",
+          "original_name": "Amsterdam",
+          "lat": 52.36757,
+          "lon": 4.90414,
+          "country": "Netherlands",
+          "country_iso2": "NL"
+        },
+        {
+          "place_id": "772cc14ffa",
+          "name": "Kinderdijk",
+          "original_name": "Kinderdijk",
+          "lat": 51.88374,
+          "lon": 4.63309,
+          "country": "Netherlands",
+          "country_iso2": "NL"
+        },
+        {
+          "place_id": "4e83b0eed3",
+          "name": "Rotterdam",
+          "original_name": "Rotterdam",
+          "lat": 51.92442,
+          "lon": 4.47773,
+          "country": "Netherlands",
+          "country_iso2": "NL"
+        },
+        {
+          "place_id": "bb6f621383",
+          "name": "Amsterdam",
+          "original_name": "Amsterdam",
+          "lat": 52.36757,
+          "lon": 4.90414,
+          "country": "Netherlands",
+          "country_iso2": "NL"
+        },
+        {
+          "place_id": "c6e4dd2f56",
+          "name": "Heidelberg",
+          "original_name": "Heidelberg",
+          "lat": 49.39875,
+          "lon": 8.67243,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "3cd6ae0113",
+          "name": "Munich",
+          "original_name": "Monaco di Baviera",
+          "lat": 48.13513,
+          "lon": 11.58198,
+          "country": "Germany",
+          "country_iso2": "DE"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "center-italy-p6gw",
+      "name": "Center Italy",
+      "year": 2012,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "e89d0cded9",
+          "name": "Florence",
+          "original_name": "Firenze",
+          "lat": 43.76997,
+          "lon": 11.25767,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "dce7b6de03",
+          "name": "Perugia",
+          "original_name": "Perugia",
+          "lat": 43.11072,
+          "lon": 12.39083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "9441274b1c",
+          "name": "Assisi",
+          "original_name": "Assisi",
+          "lat": 43.07063,
+          "lon": 12.61967,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "1052f844a8",
+          "name": "Gubbio",
+          "original_name": "Gubbio",
+          "lat": 43.35399,
+          "lon": 12.57341,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "dce7b6de03",
+          "name": "Perugia",
+          "original_name": "Perugia",
+          "lat": 43.11072,
+          "lon": 12.39083,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "7a79ff4833",
+          "name": "Castiglione del Lago",
+          "original_name": "Castiglione del Lago",
+          "lat": 43.12646,
+          "lon": 12.04794,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "a41f67f92f",
+          "name": "Tivoli",
+          "original_name": "Tivoli",
+          "lat": 41.95971,
+          "lon": 12.80213,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "4213db25f4",
+          "name": "Rome",
+          "original_name": "Roma",
+          "lat": 41.89671,
+          "lon": 12.4822,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "8dfa223b37",
+          "name": "Vatican City",
+          "original_name": "Città del Vaticano",
+          "lat": 41.90292,
+          "lon": 12.45339,
+          "country": "Vatican City",
+          "country_iso2": "VA"
+        },
+        {
+          "place_id": "4213db25f4",
+          "name": "Rome",
+          "original_name": "Roma",
+          "lat": 41.89671,
+          "lon": 12.4822,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "fc284a3478",
+          "name": "Bolsena",
+          "original_name": "Bolsena",
+          "lat": 42.64409,
+          "lon": 11.98648,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        },
+        {
+          "mode": "car"
+        }
+      ]
+    },
+    {
+      "id": "north-of-france-0kmh",
+      "name": "North of France",
+      "year": 2011,
+      "stops": [
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        },
+        {
+          "place_id": "a778661b92",
+          "name": "Paris",
+          "original_name": "Parigi",
+          "lat": 48.85755,
+          "lon": 2.35138,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "45144dd633",
+          "name": "Caen",
+          "original_name": "Caen",
+          "lat": 49.18207,
+          "lon": -0.37083,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "bbd2fc0afa",
+          "name": "Bayeux",
+          "original_name": "Bayeux",
+          "lat": 49.27644,
+          "lon": -0.70314,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "45144dd633",
+          "name": "Caen",
+          "original_name": "Caen",
+          "lat": 49.18207,
+          "lon": -0.37083,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "8c86e8a9a3",
+          "name": "Rennes",
+          "original_name": "Rennes",
+          "lat": 48.11727,
+          "lon": -1.67779,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "aff1028dd8",
+          "name": "Le Mont-Saint-Michel",
+          "original_name": "Le Mont-Saint-Michel",
+          "lat": 48.63606,
+          "lon": -1.51146,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "1a6b816eb9",
+          "name": "Saint-Malo",
+          "original_name": "Saint-Malo",
+          "lat": 48.64922,
+          "lon": -2.01842,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "8c86e8a9a3",
+          "name": "Rennes",
+          "original_name": "Rennes",
+          "lat": 48.11727,
+          "lon": -1.67779,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "dd88cd47c9",
+          "name": "Tours",
+          "original_name": "Tours",
+          "lat": 47.38977,
+          "lon": 0.68917,
+          "country": "France",
+          "country_iso2": "FR"
+        },
+        {
+          "place_id": "8216a1632a",
+          "name": "Turin",
+          "original_name": "Torino",
+          "lat": 45.07031,
+          "lon": 7.68686,
+          "country": "Italy",
+          "country_iso2": "IT"
+        }
+      ],
+      "legs": [
         {
           "mode": "car"
         },
