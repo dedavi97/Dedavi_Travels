@@ -308,10 +308,13 @@
     render(0);
     function step(ts) {
       if (start === null) start = ts;
+      var done = ts - start >= duration;
       var t = Math.min(1, (ts - start) / duration) * total;
       var p = 0;
       while (p < legs.length && t >= weights[p]) { t -= weights[p]; p++; }
-      var progress = p < legs.length ? p + t / weights[p] : legs.length;
+      // Time's up = finished: subtracting the weights can leave a rounding crumb
+      // that would keep the last leg at 99.99...% forever (and the card hidden).
+      var progress = done || p >= legs.length ? legs.length : p + t / weights[p];
       render(progress);
       if (progress < legs.length) {
         self.frame = requestAnimationFrame(step);
