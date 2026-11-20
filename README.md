@@ -44,7 +44,7 @@ The site is a plain web page hosted for free on GitHub Pages. It has no server, 
 
 ## Trips: how to add or change them
 
-Trips are edited on a hidden page of the site: **`https://dedavi97.github.io/Dedavi_Travels/#/trips-editor`** (not linked anywhere; it can't change the site by itself, so it is safe to leave it public). It works best on a computer.
+Trips are edited on a hidden page of the site: **`https://dedavi97.github.io/Dedavi_Travels/#/trips-editor`** (also linked at the bottom of the About page, under Data; it can't change the site by itself, so it is safe to leave it public). It works best on a computer.
 
 1. Open the page. At the top it says **Published revision N**: the version of the trips that is on the site now.
 2. **New trip**: type a name (and the year, if you want). Add the stops in order by clicking pins on the map or by searching a place by name; the same place can be added again (round trips). Under each stop choose the transport to the next one (🚆 🚗 ✈️ ⛴️ 🚌). Press **↔ there/back** on the legs that only take you there and back (usually the flights from and to Turin; legs from or to Turin are marked automatically, you can change them): they are drawn fainter and counted apart, so a trip far away doesn't look "bigger" just because of the flight. Drag the stops or use ↑ ↓ to change the order. The preview below the map shows the route and the numbers.

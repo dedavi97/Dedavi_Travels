@@ -40,6 +40,8 @@
           "<dt>Last check</dt><dd>" + DT.formatDate(s.last_check) + "</dd>" +
           "<dt>Last change</dt><dd>" + DT.formatDate(s.last_data_change) + "</dd>" +
           "<dt>Sync status</dt><dd>" + status + "</dd>" +
+          // For the owner; it can't change the site by itself (it only saves a file).
+          '<dt>Trips</dt><dd><a href="#/trips-editor">Trips editor</a></dd>' +
         "</dl></div>" +
 
         "<h2>Credits</h2>" +

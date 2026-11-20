@@ -338,6 +338,11 @@
       t.legs.push(leg);
     }
     changed();
+    // Follow the new stop (pins chosen from the search can be off screen).
+    if (mapLoaded) {
+      var opts = { center: [p.lon, p.lat], duration: DT.reducedMotion ? 0 : 600 };
+      map.easeTo(opts);
+    }
   }
 
   function removeStop(i) {
